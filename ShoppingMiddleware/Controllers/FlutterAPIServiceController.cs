@@ -18,6 +18,8 @@ using Swashbuckle.Swagger;
 using System.Web.WebPages;
 using System.Xml.Linq;
 using System.Web.Helpers;
+using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace ShoppingMiddleware.Controllers
 {
@@ -103,7 +105,7 @@ namespace ShoppingMiddleware.Controllers
         public async Task<IHttpActionResult> logout()
         {
             CookieHeaderValue ck = Request.Headers.GetCookies("userInfo").FirstOrDefault();
-            if(ck.ToString() != null)
+            if(ck != null)
             {
                 ck.Cookies.Clear();
 
@@ -275,6 +277,29 @@ namespace ShoppingMiddleware.Controllers
                 return InternalServerError(ex);
             }
         }
+
+
+        // GET: api/HinhAnhsAPI/5
+        [ResponseType(typeof(List<ProductImageDTO>))]
+        public async Task<IHttpActionResult> GetHinhAnh(int id) // id SP
+        {
+            var hinhAnhList = await db.HinhAnh
+                .Where(h => h.IDSP == id)
+                .Select(h => new ProductImageDTO
+                {
+                    IDSP = h.IDSP,
+                    IDHinh = h.IDHinh,
+                    TenHinh = h.TenHinh
+                })
+                .ToListAsync();
+
+            if (!hinhAnhList.Any())
+                return NotFound();
+
+            return Ok(hinhAnhList);
+        }
+
+
 
         private string HashString(string input)
         {
