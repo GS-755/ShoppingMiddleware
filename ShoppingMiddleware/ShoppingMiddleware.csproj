@@ -172,6 +172,7 @@
     <Compile Include="Controllers\HinhAnhsAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NguoiDungsAPIController.cs" />
+    <Compile Include="Controllers\NguoiDungsController.cs" />
     <Compile Include="Controllers\ProductAPIController.cs" />
     <Compile Include="Controllers\ProductServiceController.cs" />
     <Compile Include="Controllers\FlutterAPIServiceController.cs" />
@@ -308,6 +309,11 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
+    <Content Include="Views\NguoiDungs\Create.cshtml" />
+    <Content Include="Views\NguoiDungs\Delete.cshtml" />
+    <Content Include="Views\NguoiDungs\Details.cshtml" />
+    <Content Include="Views\NguoiDungs\Edit.cshtml" />
+    <Content Include="Views\NguoiDungs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,32 +1,32 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Http;
-using static ShoppingMiddleware.Models.Flutter.FlutterServiceDTOModel;
-using System.Web.Http.Description;
-using ShoppingMiddleware.Models;
-using static ShoppingMiddleware.Models.DTOModel.DBShopingDTOModel;
-using System.Net.Http;
-using System.Net.Http.Headers;
+﻿using System;
 using System.Net;
+using System.Web;
+using System.Linq;
+using System.Text;
+using Newtonsoft.Json;
+using System.Web.Http;
+using System.Net.Http;
+using System.Xml.Linq;
+using System.Data.Entity;
+using System.Diagnostics;
+using System.Web.Helpers;
 using Swashbuckle.Swagger;
 using System.Web.WebPages;
-using System.Xml.Linq;
-using System.Web.Helpers;
-using System.Data.Entity;
+using System.Threading.Tasks;
+using System.Net.Http.Headers;
+using System.Web.Http.Results;
+using ShoppingMiddleware.Models;
 using System.Collections.Generic;
+using System.Web.Http.Description;
+using System.Security.Cryptography;
+using static ShoppingMiddleware.Models.DTOModel.DBShopingDTOModel;
+using static ShoppingMiddleware.Models.Flutter.FlutterServiceDTOModel;
 
 namespace ShoppingMiddleware.Controllers
 {
     public class FlutterAPIServiceController : ApiController
     {
         private BackendFlutter2024Entities db = new BackendFlutter2024Entities();
-        private CookieHeaderValue serverCookie;
 
         /// <summary>
         /// Get Detail User Flutter 
@@ -38,22 +38,21 @@ namespace ShoppingMiddleware.Controllers
         public async Task<IHttpActionResult> GetUserDetails()
         {
             try {
-                
-            CookieHeaderValue ck = Request.Headers.GetCookies("userInfo").FirstOrDefault();
-                if (ck == null)
-                {
-                    return Unauthorized();
-                }
-                //HttpCookie ck = HttpContext.Current.Response.Cookies.Get("userInfo");
 
-                if (ck.ToString().Length == 0)
+                CookieHeaderValue ck = Request.Headers.GetCookies("user").FirstOrDefault();
+                
+                if (ck == null || ck.ToString().Length == 0)
                 {
                     return Unauthorized();
                 }
-                string result = ck.ToString().Replace("userInfo=", "");
+
+                string result = ck.ToString().Replace("user=", "");
+
                 NguoiDung nguoiDung = await db.NguoiDung.FindAsync(int.Parse(result));
-                if (nguoiDung == null){
-                    return Ok("con cặc");
+
+                if (nguoiDung == null)
+                {
+                    return Ok("ko tìm thấy người dùng !");
                 }
 
                 return Ok(new UserDTO {
@@ -69,9 +68,9 @@ namespace ShoppingMiddleware.Controllers
                 });
 
             }
-            catch
+            catch (Exception e)
             {
-                return Unauthorized();
+                return Ok("cạp cạp cạp Exception nè pé ! " + e);
             }
         }
 
@@ -222,12 +221,13 @@ namespace ShoppingMiddleware.Controllers
         [HttpPost]
         [Route("api/Login")]
         [ResponseType(typeof(FlutterCookieUser))]
-        public async Task<IHttpActionResult> Login(string username, string password)
+        public async Task<IHttpActionResult> Login(FlutterLoginUser us)
         {
             try
             {
-                username = "user1";
-                password = "password1";
+                string username = us.UserName;
+                string password = us.Password;
+
                 // Kiểm tra tên đăng nhập và mật khẩu
                 var user = db.NguoiDung
                     .FirstOrDefault(
@@ -247,30 +247,26 @@ namespace ShoppingMiddleware.Controllers
                     MatKhau = user.MatKhau
                 };
 
-
                 // Lấy thông tin user:
                 var userInfo = JsonConvert.SerializeObject(userDTO);
-                var hashedUserInfo = HashString(userInfo);
-                
-                // tạo cookie:
-                HttpCookie cookie = new HttpCookie("userInfo", userDTO.IDND.ToString());
-                //cookie.Values["userInfo"] = userDTO.IDND.ToString();
-                
-                
-                // hạn sử dụng
-                cookie.Expires = DateTime.Now.AddMinutes(1);
-                
-                // thêm cookie:
-                HttpContext.Current.Response.Cookies.Add(cookie);
+                var hashedUserInfo = userInfo; // HashString(userInfo);
 
-
-
-                // DTO cookieUser:
-                return Ok(new FlutterCookieUser
+                // Create the response message and add the cookie to the headers
+                var response = Request.CreateResponse(HttpStatusCode.OK, new FlutterCookieUser
                 {
                     UserID = userDTO.IDND,
-                    Token = hashedUserInfo
+                    Token = userDTO.IDND.ToString() // Trả về giá trị cookie trong token
                 });
+
+                // Add Set-Cookie header to the response
+                response.Headers.AddCookies(new CookieHeaderValue[] {
+                    new CookieHeaderValue("user", userDTO.IDND.ToString()) {
+                        HttpOnly = true,
+                        Expires = DateTimeOffset.Now.AddMinutes(1)
+                    }
+                });
+
+                return ResponseMessage(response);
             }
             catch (Exception ex)
             {
@@ -278,15 +274,14 @@ namespace ShoppingMiddleware.Controllers
             }
         }
 
-
         // GET: api/HinhAnhsAPI/5
+        [HttpGet]
         [ResponseType(typeof(List<ProductImageDTO>))]
         public async Task<IHttpActionResult> GetHinhAnh(int id) // id SP
         {
             var hinhAnhList = await db.HinhAnh
                 .Where(h => h.IDSP == id)
-                .Select(h => new ProductImageDTO
-                {
+                .Select(h => new ProductImageDTO {
                     IDSP = h.IDSP,
                     IDHinh = h.IDHinh,
                     TenHinh = h.TenHinh
@@ -298,8 +293,6 @@ namespace ShoppingMiddleware.Controllers
 
             return Ok(hinhAnhList);
         }
-
-
 
         private string HashString(string input)
         {
