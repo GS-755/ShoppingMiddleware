@@ -38,13 +38,14 @@ namespace ShoppingMiddleware.Controllers
         public async Task<IHttpActionResult> GetUserDetails()
         {
             try {
-
                 CookieHeaderValue ck = Request.Headers.GetCookies("user").FirstOrDefault();
-                
-                if (ck == null || ck.ToString().Length == 0)
+
+                if (ck == null)
                 {
-                    return Unauthorized();
+                    // Status Code: 403
+                    return StatusCode((HttpStatusCode)403);
                 }
+
 
                 string result = ck.ToString().Replace("user=", "");
 
@@ -74,8 +75,6 @@ namespace ShoppingMiddleware.Controllers
             }
         }
 
-
-
         /// <summary>
         /// Get Detail User Flutter 
         /// </summary>
@@ -92,7 +91,6 @@ namespace ShoppingMiddleware.Controllers
                 }).ToList();
             return Ok(categorys);
         }
-
 
         /// <summary>
         /// Get Detail User Flutter 
@@ -116,8 +114,6 @@ namespace ShoppingMiddleware.Controllers
             }
 
         }
-
-
 
         /// <summary>
         /// Get list Card Item for home page Flutter 
@@ -179,7 +175,6 @@ namespace ShoppingMiddleware.Controllers
             }
         }
 
-
         /// <summary>
         /// Get list Card Item for home page Flutter 
         /// </summary>
@@ -236,7 +231,8 @@ namespace ShoppingMiddleware.Controllers
 
                 if (user == null)
                 {
-                    return NotFound();
+                    //Status Code: 401
+                    return Unauthorized();
                 }
 
                 UserDTO userDTO = new UserDTO
@@ -312,6 +308,5 @@ namespace ShoppingMiddleware.Controllers
         {
             return db.SanPham.Count(e => e.IDSP == id) > 0;
         }
-
     }
 }
