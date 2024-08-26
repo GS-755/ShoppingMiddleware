@@ -21,6 +21,7 @@ using System.Web.Http.Description;
 using System.Security.Cryptography;
 using static ShoppingMiddleware.Models.DTOModel.DBShopingDTOModel;
 using static ShoppingMiddleware.Models.Flutter.FlutterServiceDTOModel;
+using System.Globalization;
 
 namespace ShoppingMiddleware.Controllers
 {
@@ -254,11 +255,14 @@ namespace ShoppingMiddleware.Controllers
                     Token = userDTO.IDND.ToString() // Trả về giá trị cookie trong token
                 });
 
+                CultureInfo ci = CultureInfo.GetCultureInfo("vi-VN");
+                DateTime.Now.ToString("dd/MM/yyyy", ci);
+
                 // Add Set-Cookie header to the response
                 response.Headers.AddCookies(new CookieHeaderValue[] {
                     new CookieHeaderValue("user", userDTO.IDND.ToString()) {
                         HttpOnly = true,
-                        Expires = DateTimeOffset.Now.AddMinutes(1)
+                        Expires = DateTime.Now.AddMinutes(1)
                     }
                 });
 

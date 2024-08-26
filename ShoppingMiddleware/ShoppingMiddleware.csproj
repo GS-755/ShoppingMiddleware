@@ -169,6 +169,8 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ChiTiet_SPAPIController.cs" />
+    <Compile Include="Controllers\CT_DonDatHangController.cs" />
+    <Compile Include="Controllers\DonDatHangsController.cs" />
     <Compile Include="Controllers\HinhAnhsAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NguoiDungsAPIController.cs" />
@@ -314,6 +316,16 @@
     <Content Include="Views\NguoiDungs\Details.cshtml" />
     <Content Include="Views\NguoiDungs\Edit.cshtml" />
     <Content Include="Views\NguoiDungs\Index.cshtml" />
+    <Content Include="Views\DonDatHangs\Create.cshtml" />
+    <Content Include="Views\DonDatHangs\Delete.cshtml" />
+    <Content Include="Views\DonDatHangs\Details.cshtml" />
+    <Content Include="Views\DonDatHangs\Edit.cshtml" />
+    <Content Include="Views\DonDatHangs\Index.cshtml" />
+    <Content Include="Views\CT_DonDatHang\Create.cshtml" />
+    <Content Include="Views\CT_DonDatHang\Delete.cshtml" />
+    <Content Include="Views\CT_DonDatHang\Details.cshtml" />
+    <Content Include="Views\CT_DonDatHang\Edit.cshtml" />
+    <Content Include="Views\CT_DonDatHang\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
