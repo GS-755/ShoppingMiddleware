@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ShoppingMiddleware.Models.ThanhPho>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenThanhPho) |  <button>@Html.ActionLink("tạo", "Create", null, new { @class = "create-new-link" })</button>
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenThanhPho)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IDThanhPho }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IDThanhPho }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDThanhPho })
+            </td>
+        </tr>
+    }
+</table>

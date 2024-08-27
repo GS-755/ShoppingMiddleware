@@ -169,15 +169,20 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ChiTiet_SPAPIController.cs" />
+    <Compile Include="Controllers\ChiTiet_SPController.cs" />
     <Compile Include="Controllers\CT_DonDatHangController.cs" />
     <Compile Include="Controllers\DonDatHangsController.cs" />
     <Compile Include="Controllers\HinhAnhsAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MauSacsController.cs" />
     <Compile Include="Controllers\NguoiDungsAPIController.cs" />
     <Compile Include="Controllers\NguoiDungsController.cs" />
     <Compile Include="Controllers\ProductAPIController.cs" />
     <Compile Include="Controllers\ProductServiceController.cs" />
     <Compile Include="Controllers\FlutterAPIServiceController.cs" />
+    <Compile Include="Controllers\SanPhamsController.cs" />
+    <Compile Include="Controllers\ThanhPhoesController.cs" />
+    <Compile Include="Controllers\ThuongHieuxController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -258,6 +263,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\layout.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -282,6 +288,18 @@
     <Content Include="Public\imgs\G3.png" />
     <Content Include="Public\imgs\G4.png" />
     <Content Include="Public\imgs\N1.png" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -294,6 +312,26 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\ThanhPhoes\Create.cshtml" />
+    <Content Include="Views\ThanhPhoes\Delete.cshtml" />
+    <Content Include="Views\ThanhPhoes\Details.cshtml" />
+    <Content Include="Views\ThanhPhoes\Edit.cshtml" />
+    <Content Include="Views\ThanhPhoes\Index.cshtml" />
+    <Content Include="Views\SanPhams\Create.cshtml" />
+    <Content Include="Views\SanPhams\Delete.cshtml" />
+    <Content Include="Views\SanPhams\Details.cshtml" />
+    <Content Include="Views\SanPhams\Edit.cshtml" />
+    <Content Include="Views\SanPhams\Index.cshtml" />
+    <Content Include="Views\MauSacs\Create.cshtml" />
+    <Content Include="Views\MauSacs\Delete.cshtml" />
+    <Content Include="Views\MauSacs\Details.cshtml" />
+    <Content Include="Views\MauSacs\Edit.cshtml" />
+    <Content Include="Views\MauSacs\Index.cshtml" />
+    <Content Include="Views\ChiTiet_SP\Create.cshtml" />
+    <Content Include="Views\ChiTiet_SP\Delete.cshtml" />
+    <Content Include="Views\ChiTiet_SP\Details.cshtml" />
+    <Content Include="Views\ChiTiet_SP\Edit.cshtml" />
+    <Content Include="Views\ChiTiet_SP\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -326,6 +364,19 @@
     <Content Include="Views\CT_DonDatHang\Details.cshtml" />
     <Content Include="Views\CT_DonDatHang\Edit.cshtml" />
     <Content Include="Views\CT_DonDatHang\Index.cshtml" />
+    <Content Include="Views\ThuongHieux\Create.cshtml" />
+    <Content Include="Views\ThuongHieux\Delete.cshtml" />
+    <Content Include="Views\ThuongHieux\Details.cshtml" />
+    <Content Include="Views\ThuongHieux\Edit.cshtml" />
+    <Content Include="Views\ThuongHieux\Index.cshtml" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

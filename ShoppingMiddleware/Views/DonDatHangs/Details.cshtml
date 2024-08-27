@@ -4,79 +4,125 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 class="detail-title">Order Details</h2>
 
-<div>
-    <h4>DonDatHang</h4>
+<div class="detail-container">
+    <h4 class="detail-heading">Order Information</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayDat)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayDat)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhiGiaoHang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhiGiaoHang)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TongTien)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TongTien)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TrangThai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChiNhanHang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiaChiNhanHang)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SDTNhanHang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SDTNhanHang)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NguoiDung.TenND)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NguoiDung.TenND)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NhanVien.TenNV)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NhanVien.TenNV)
-        </dd>
-
-    </dl>
+    <table class="table detail-table">
+        <tr>
+            <th class="detail-label">@Html.DisplayNameFor(model => model.NgayDat)</th>
+            <td class="detail-value">@Html.DisplayFor(model => model.NgayDat)</td>
+        </tr>
+        <tr>
+            <th class="detail-label">@Html.DisplayNameFor(model => model.PhiGiaoHang)</th>
+            <td class="detail-value">@Html.DisplayFor(model => model.PhiGiaoHang)</td>
+        </tr>
+        <tr>
+            <th class="detail-label">@Html.DisplayNameFor(model => model.TongTien)</th>
+            <td class="detail-value">@Html.DisplayFor(model => model.TongTien)</td>
+        </tr>
+        <tr>
+            <th class="detail-label">@Html.DisplayNameFor(model => model.TrangThai)</th>
+            <td class="detail-value">@Html.DisplayFor(model => model.TrangThai)</td>
+        </tr>
+        <tr>
+            <th class="detail-label">@Html.DisplayNameFor(model => model.DiaChiNhanHang)</th>
+            <td class="detail-value">@Html.DisplayFor(model => model.DiaChiNhanHang)</td>
+        </tr>
+        <tr>
+            <th class="detail-label">@Html.DisplayNameFor(model => model.SDTNhanHang)</th>
+            <td class="detail-value">@Html.DisplayFor(model => model.SDTNhanHang)</td>
+        </tr>
+        <tr>
+            <th class="detail-label">@Html.DisplayNameFor(model => model.NguoiDung.TenND)</th>
+            <td class="detail-value">@Html.DisplayFor(model => model.NguoiDung.TenND)</td>
+        </tr>
+        <tr>
+            <th class="detail-label">@Html.DisplayNameFor(model => model.NhanVien.TenNV)</th>
+            <td class="detail-value">@Html.DisplayFor(model => model.NhanVien.TenNV)</td>
+        </tr>
+    </table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDDonDatHang }) |
-    @Html.ActionLink("Back to List", "Index")
+
+<p class="detail-actions">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDDonDatHang }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
 </p>
+
+<style>
+    /* Title Styles */
+    .detail-title {
+        color: #004aad;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    /* Container Styles */
+    .detail-container {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Heading Styles */
+    .detail-heading {
+        color: #004aad;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    /* Table Styles */
+    .detail-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .detail-label {
+        font-weight: bold;
+        color: #004aad;
+        padding: 10px;
+        border-bottom: 1px solid #dddddd;
+        text-align: left;
+        width: 30%;
+    }
+
+    .detail-value {
+        color: #333;
+        padding: 10px;
+        border-bottom: 1px solid #dddddd;
+        text-align: left;
+        width: 70%;
+    }
+
+    /* Action Link Styles */
+    .detail-actions {
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #004aad;
+        color: #fff;
+    }
+
+        .btn-primary:hover {
+            background-color: #003580;
+        }
+
+    .btn-secondary {
+        background-color: #cccccc;
+        color: #333;
+    }
+
+        .btn-secondary:hover {
+            background-color: #999999;
+        }
+</style>
