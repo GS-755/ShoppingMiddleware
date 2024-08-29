@@ -186,6 +186,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Flutter\BackendFlutterModel.cs" />
     <Compile Include="Models\ChiTietDiaChi.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -263,6 +264,96 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\demo.css" />
+    <Content Include="assets\css\ProductList.css" />
+    <Content Include="assets\img\avatars\1.png" />
+    <Content Include="assets\img\avatars\2.png" />
+    <Content Include="assets\img\avatars\3.png" />
+    <Content Include="assets\img\avatars\4.png" />
+    <Content Include="assets\img\avatars\5.png" />
+    <Content Include="assets\img\avatars\6.png" />
+    <Content Include="assets\img\avatars\7.png" />
+    <Content Include="assets\img\backgrounds\18.jpg" />
+    <Content Include="assets\img\elements\1.jpg" />
+    <Content Include="assets\img\elements\11.jpg" />
+    <Content Include="assets\img\elements\12.jpg" />
+    <Content Include="assets\img\elements\13.jpg" />
+    <Content Include="assets\img\elements\17.jpg" />
+    <Content Include="assets\img\elements\18.jpg" />
+    <Content Include="assets\img\elements\19.jpg" />
+    <Content Include="assets\img\elements\2.jpg" />
+    <Content Include="assets\img\elements\20.jpg" />
+    <Content Include="assets\img\elements\3.jpg" />
+    <Content Include="assets\img\elements\4.jpg" />
+    <Content Include="assets\img\elements\5.jpg" />
+    <Content Include="assets\img\elements\7.jpg" />
+    <Content Include="assets\img\favicon\favicon.ico" />
+    <Content Include="assets\img\icons\brands\asana.png" />
+    <Content Include="assets\img\icons\brands\aws.png" />
+    <Content Include="assets\img\icons\brands\behance.png" />
+    <Content Include="assets\img\icons\brands\dribbble.png" />
+    <Content Include="assets\img\icons\brands\facebook.png" />
+    <Content Include="assets\img\icons\brands\github.png" />
+    <Content Include="assets\img\icons\brands\google.png" />
+    <Content Include="assets\img\icons\brands\instagram.png" />
+    <Content Include="assets\img\icons\brands\mailchimp.png" />
+    <Content Include="assets\img\icons\brands\slack.png" />
+    <Content Include="assets\img\icons\brands\twitter.png" />
+    <Content Include="assets\img\icons\misc\aviato.png" />
+    <Content Include="assets\img\icons\misc\bitbank.png" />
+    <Content Include="assets\img\icons\misc\triangle-light.png" />
+    <Content Include="assets\img\icons\misc\zipcar.png" />
+    <Content Include="assets\img\icons\payments\american-bank.png" />
+    <Content Include="assets\img\icons\payments\citi.png" />
+    <Content Include="assets\img\icons\payments\digital-ocean.png" />
+    <Content Include="assets\img\icons\payments\gumroad.png" />
+    <Content Include="assets\img\icons\payments\mastercard-2.png" />
+    <Content Include="assets\img\icons\payments\stripes.png" />
+    <Content Include="assets\img\illustrations\404.png" />
+    <Content Include="assets\img\illustrations\auth-basic-mask-light.png" />
+    <Content Include="assets\img\illustrations\misc-mask-light.png" />
+    <Content Include="assets\img\illustrations\misc-under-maintenance.png" />
+    <Content Include="assets\img\illustrations\tree-3.png" />
+    <Content Include="assets\img\illustrations\tree.png" />
+    <Content Include="assets\img\illustrations\trophy.png" />
+    <Content Include="assets\img\layouts\layout-container-light.png" />
+    <Content Include="assets\img\layouts\layout-fluid-light.png" />
+    <Content Include="assets\img\layouts\layout-without-menu-light.png" />
+    <Content Include="assets\img\layouts\layout-without-navbar-light.png" />
+    <Content Include="assets\js\app-ecommerce-product-list.js" />
+    <Content Include="assets\js\config.js" />
+    <Content Include="assets\js\dashboards-analytics.js" />
+    <Content Include="assets\js\extended-ui-perfect-scrollbar.js" />
+    <Content Include="assets\js\form-basic-inputs.js" />
+    <Content Include="assets\js\main.js" />
+    <Content Include="assets\js\pages-account-settings-account.js" />
+    <Content Include="assets\js\ui-modals.js" />
+    <Content Include="assets\js\ui-popover.js" />
+    <Content Include="assets\js\ui-toasts.js" />
+    <Content Include="assets\vendor\css\core.css" />
+    <Content Include="assets\vendor\css\pages\page-account-settings.css" />
+    <Content Include="assets\vendor\css\pages\page-auth.css" />
+    <Content Include="assets\vendor\css\pages\page-icons.css" />
+    <Content Include="assets\vendor\css\pages\page-misc.css" />
+    <Content Include="assets\vendor\css\theme-default.css" />
+    <Content Include="assets\vendor\fonts\remixicon\remixicon.css" />
+    <Content Include="assets\vendor\fonts\remixicon\remixicon.svg" />
+    <Content Include="assets\vendor\js\bootstrap.js" />
+    <Content Include="assets\vendor\js\helpers.js" />
+    <Content Include="assets\vendor\js\menu.js" />
+    <Content Include="assets\vendor\libs\apex-charts\apex-charts.css" />
+    <Content Include="assets\vendor\libs\apex-charts\apexcharts.js" />
+    <Content Include="assets\vendor\libs\highlight\highlight-github.css" />
+    <Content Include="assets\vendor\libs\highlight\highlight.css" />
+    <Content Include="assets\vendor\libs\highlight\highlight.js" />
+    <Content Include="assets\vendor\libs\jquery\jquery.js" />
+    <Content Include="assets\vendor\libs\masonry\masonry.js" />
+    <Content Include="assets\vendor\libs\node-waves\node-waves.css" />
+    <Content Include="assets\vendor\libs\node-waves\node-waves.js" />
+    <Content Include="assets\vendor\libs\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="assets\vendor\libs\perfect-scrollbar\perfect-scrollbar.js" />
+    <Content Include="assets\vendor\libs\popper\popper.js" />
+    <Content Include="Content\demo.css" />
     <Content Include="Content\layout.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -277,6 +368,8 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Public\imgs\aosomi.jpg" />
+    <Content Include="Public\imgs\aothun.jpg" />
     <Content Include="Public\imgs\B1.png" />
     <Content Include="Public\imgs\B2.jpg" />
     <Content Include="Public\imgs\B3.png" />
@@ -287,13 +380,20 @@
     <Content Include="Public\imgs\G2.png" />
     <Content Include="Public\imgs\G3.png" />
     <Content Include="Public\imgs\G4.png" />
+    <Content Include="Public\imgs\giaythethao.jpg" />
     <Content Include="Public\imgs\N1.png" />
+    <Content Include="Public\imgs\quanjean.jpg" />
+    <Content Include="Public\imgs\vaydam.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="assets\vendor\fonts\remixicon\remixicon.eot" />
+    <Content Include="assets\vendor\fonts\remixicon\remixicon.ttf" />
+    <Content Include="assets\vendor\fonts\remixicon\remixicon.woff" />
+    <Content Include="assets\vendor\fonts\remixicon\remixicon.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -332,9 +432,16 @@
     <Content Include="Views\ChiTiet_SP\Details.cshtml" />
     <Content Include="Views\ChiTiet_SP\Edit.cshtml" />
     <Content Include="Views\ChiTiet_SP\Index.cshtml" />
+    <Content Include="Views\Shared\_MainLayout.cshtml" />
+    <Content Include="Views\Home\Nguoidung.cshtml" />
+    <Content Include="Views\Shared\_TestLayout.cshtml" />
+    <Content Include="Views\Home\ProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\img\icons\unicons\" />
+    <Folder Include="assets\json\" />
+    <Folder Include="assets\svg\" />
     <Folder Include="Data\" />
     <Folder Include="Views\ProductAPI\" />
     <Folder Include="Views\ProductServices\" />
