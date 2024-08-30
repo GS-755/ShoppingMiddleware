@@ -43,5 +43,15 @@ namespace ShoppingMiddleware.Models.Flutter
             public int UserID { get; set; }
             public string Token { get; set; }
         }
+
+        public class TotalTransactions
+        {
+            // Growth:
+            public int totalSales { get; set; }
+            public int totalCustomers { get; set; }
+            public int totalProduct { get; set; }
+            public float totalRevenue { get; set; }
+
+        }
     }
 }

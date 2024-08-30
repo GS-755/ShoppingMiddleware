@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ShoppingMiddleware.Models.SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenSP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiSP.TenLoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MauSac.TenMau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NhanVien.TenNV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThuongHieu.TenThuongHieu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThai.TenTrangThaI)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenSP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiSP.TenLoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MauSac.TenMau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NhanVien.TenNV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThuongHieu.TenThuongHieu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrangThai.TenTrangThaI)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDSP }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDSP }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDSP })
+        </td>
+    </tr>
+}
+
+</table>

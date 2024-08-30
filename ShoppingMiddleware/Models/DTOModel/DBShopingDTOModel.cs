@@ -49,7 +49,6 @@ namespace ShoppingMiddleware.Models.DTOModel
         }
         public class OrderDTO
         {
-
             public System.DateTime NgayDat { get; set; }
             public int IDDonDatHang { get; set; }
             public int PhiGiaoHang { get; set; }
