@@ -54,9 +54,9 @@
                             <td><span class="text-truncate"> @Html.DisplayFor(modelItem => item.Tuoi)</span></td>
 
                             <td class="text-truncate">
-                                @Html.ActionLink("Edit", "Edit", new { id = item.IDND }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.IDND }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.IDND })
+                                @Html.ActionLink("Edit", "Edit", "NguoiDungs", new { id = item.IDND }, null) |
+                                @Html.ActionLink("Details", "Details", "NguoiDungs", new { id = item.IDND }) |
+                                @Html.ActionLink("Delete", "Delete", "NguoiDungs", new { id = item.IDND })
                             </td>
 
                         </tr>
