@@ -310,6 +310,7 @@
     <Content Include="assets\img\icons\payments\mastercard-2.png" />
     <Content Include="assets\img\icons\payments\stripes.png" />
     <Content Include="assets\img\illustrations\404.png" />
+    <Content Include="assets\img\illustrations\Animation-SkeletonLoading.gif" />
     <Content Include="assets\img\illustrations\auth-basic-mask-light.png" />
     <Content Include="assets\img\illustrations\misc-mask-light.png" />
     <Content Include="assets\img\illustrations\misc-under-maintenance.png" />
@@ -433,8 +434,7 @@
     <Content Include="Views\ChiTiet_SP\Edit.cshtml" />
     <Content Include="Views\ChiTiet_SP\Index.cshtml" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
-    <Content Include="Views\Home\Nguoidung.cshtml" />
-    <Content Include="Views\Shared\_TestLayout.cshtml" />
+    <Content Include="Views\NguoiDungs\Nguoidung.cshtml" />
     <Content Include="Views\Home\ProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>

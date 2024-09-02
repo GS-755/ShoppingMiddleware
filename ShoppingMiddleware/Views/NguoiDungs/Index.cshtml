@@ -1,81 +1,104 @@
-﻿@model IEnumerable<ShoppingMiddleware.Models.NguoiDung>
+﻿@model IEnumerable<ShoppingMiddleware.Models.PhanQuyen>
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+<div class="col-12">
+    <div class="card overflow-hidden">
 
-<h2>Index</h2>
+        <div class="card-header">
+            <h5 class="mb-0">Filter</h5>
+            <div class="d-flex justify-content-between align-items-center row pt-4 gap-4 gap-md-0">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TenND)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ho_TenDem)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GioiTinh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SDT)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tuoi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MatKhau)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TenDangNhap)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhanQuyen.TenQuyen)
-        </th>
-        <th></th>
-    </tr>
+                <div class="col-md-4 product_status">
+                    <select id="ProductStatus" class="form-select text-capitalize">
+                        <option value="">Select Role</option>
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.IDQuyen">@item.TenQuyen</option>
+                        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenND)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ho_TenDem)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GioiTinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SDT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tuoi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MatKhau)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenDangNhap)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhanQuyen.TenQuyen)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDND }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDND }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDND })
-        </td>
-    </tr>
+
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data table -->
+        <div id="ContentBody">
+            <!-- Spinner -->
+            <div id="loadingSpinner" style="display: none;">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th class="text-truncate">Ngời Dùng</th>
+                                <th class="text-truncate">Email</th>
+                                <th class="text-truncate">Quyền</th>
+                                <th class="text-truncate">Giới Tính</th>
+                                <th class="text-truncate">Tuổi</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-sm me-4">
+                                            <img style="height: 10%" src="~/assets/img/illustrations/Animation-SkeletonLoading.gif" />
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-truncate">
+                                            <img style="height: 10%" src="~/assets/img/illustrations/Animation-SkeletonLoading.gif" /></h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-truncate text-bg-b">
+                                    <img style="height: 10%" src="~/assets/img/illustrations/Animation-SkeletonLoading.gif" />
+                                </td>
+                                <td class="text-truncate">
+                                    <div class="d-flex align-items-center">
+                                        <img style="height: 10%" src="~/assets/img/illustrations/Animation-SkeletonLoading.gif" />
+                                    </div>
+                                </td>
+
+                                <td><img style="height: 10%" src="~/assets/img/illustrations/Animation-SkeletonLoading.gif" /></td>
+                                <td><span class="text-truncate"><img style="height: 10%" src="~/assets/img/illustrations/Animation-SkeletonLoading.gif" /></span></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <!-- Data table -->
+        </div>
+    </div>
+
+    <script>
+window.onload = function () {
+    loadPartial("Defaul");
+};
+
+$(document).ready(function() {
+    $('#ProductStatus').change(function () {
+        // Get the selected value
+        var selectedRoleID = $(this).val();
+        if (selectedRoleID) {
+            loadPartial(selectedRoleID);
+        } else {
+            loadPartial("");
+        }
+    });
+});
+
+function loadPartial(roleID) {
+    $("#loadingSpinner").show();
+    $.get('@Url.Action("UsersTable", "NguoiDungs")', { roleID: roleID }, function(data) {
+        $("#ContentBody").html(data);
+    })
+    .always(function() {
+        $("#loadingSpinner").hide();
+    });
 }
-
-</table>
+    </script>

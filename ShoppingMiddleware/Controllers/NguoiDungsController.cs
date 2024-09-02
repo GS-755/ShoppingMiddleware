@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ShoppingMiddleware.Models;
+using System.Web.Security;
 
 namespace ShoppingMiddleware.Controllers
 {
@@ -18,9 +19,33 @@ namespace ShoppingMiddleware.Controllers
         // GET: NguoiDungs
         public async Task<ActionResult> Index()
         {
-            var nguoiDung = db.NguoiDung.Include(n => n.PhanQuyen);
-            return View(await nguoiDung.ToListAsync());
+            //var nguoiDung = db.NguoiDung.Include(n => n.PhanQuyen);
+            var phanquyen = db.PhanQuyen.ToListAsync();
+            return View(await phanquyen);
         }
+
+
+        [HttpGet]
+        public async Task<ActionResult> UsersTable(string roleID)
+        {
+            if(roleID == "Defaul")
+            {
+                var userList = db.NguoiDung.ToList();
+                return PartialView("NguoiDung", userList);
+            }
+
+            IQueryable<NguoiDung> usersQuery = db.NguoiDung;
+
+            if (!string.IsNullOrEmpty(roleID) && int.TryParse(roleID, out int parsedRoleID))
+            {
+                usersQuery = usersQuery.Where(u => u.IDQuyen == parsedRoleID);
+            }
+
+            var users = await usersQuery.ToListAsync();
+            return PartialView("NguoiDung", users);
+        }
+
+
 
         // GET: NguoiDungs/Details/5
         public async Task<ActionResult> Details(int? id)

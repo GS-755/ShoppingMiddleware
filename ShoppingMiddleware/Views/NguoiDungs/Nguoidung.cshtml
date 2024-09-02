@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ShoppingMiddleware.Models.NguoiDung>
+<div class="table-responsive">
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th class="text-truncate">Ngời Dùng</th>
+                <th class="text-truncate">Email</th>
+                <th class="text-truncate">Quyền</th>
+                <th class="text-truncate">Giới Tính</th>
+                <th class="text-truncate">Tuổi</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="avatar avatar-sm me-4">
+                                <img src="../assets/img/avatars/1.png" alt="Avatar" class="rounded-circle" />
+                            </div>
+                            <div>
+                                <h6 class="mb-0 text-truncate"> @Html.DisplayFor(modelItem => item.Ho_TenDem)   @Html.DisplayFor(modelItem => item.TenND)</h6>
+                                <small class="text-truncate"> @Html.DisplayFor(model => item.TenDangNhap)</small>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td class="text-truncate text-bg-b">
+                        <a class="text-info" href="mailto:@(item.Email)">@Html.DisplayFor(model => item.Email)</a>
+                    </td>
+
+                    <td class="text-truncate">
+                        <div class="d-flex align-items-center">
+                            @if (item.PhanQuyen.TenQuyen == "SuperAdmin")
+                            {
+                                <i class="ri-user-2-fill ri-22px text-danger me-2"></i>
+                            }
+                            else if (item.PhanQuyen.TenQuyen == "Admin")
+                            {
+                                <i class="ri-user-2-fill ri-22px text-primary me-2"></i>
+                            }
+                            else
+                            {
+                                <i class="ri-user-fill ri-22px text-success me-2"></i>
+                            }
+                            <span>@Html.DisplayFor(modelItem => item.PhanQuyen.TenQuyen)</span>
+                        </div>
+                    </td>
+                    @if (item.GioiTinh == "M")
+                    {
+                        <td><span class="badge bg-label-warning rounded-pill"> @Html.DisplayFor(modelItem => item.GioiTinh)</span></td>
+                    }
+                    else
+                    {
+                        <td><span class="badge bg-label-success rounded-pill"> @Html.DisplayFor(modelItem => item.GioiTinh)</span></td>
+                    }
+
+                    <td><span class="text-truncate"> @Html.DisplayFor(modelItem => item.Tuoi)</span></td>
+
+                    <td class="text-truncate">
+                        <div class="dropdown">
+                            <button class="btn text-muted p-0"
+                                    type="button"
+                                    id="transactionID"
+                                    data-bs-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
+                                <i class="ri-more-2-line ri-24px"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
+                                @if (item.IDND == 1)
+                                {
+                                    <div class="dropdown-item">@Html.ActionLink("Details", "Details", "NguoiDungs", new { id = item.IDND })</div>
+                                }
+                                else
+                                {<div class="dropdown-item">@Html.ActionLink("Edit", "Edit", "NguoiDungs", new { id = item.IDND }, null)</div>
+                                <div class="dropdown-item">@Html.ActionLink("Details", "Details", "NguoiDungs", new { id = item.IDND })</div>
+                                <div class="dropdown-item">@Html.ActionLink("Delete", "Delete", "NguoiDungs", new { id = item.IDND })</div>
+                            }
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
