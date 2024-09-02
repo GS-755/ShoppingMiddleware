@@ -1,6 +1,6 @@
 # ShoppingMiddleware
 
-<details open="" align="left">
+<details lose="" align="left">
   <summary>  
   # Update: View template css Free by Material UI 
   </summary>
@@ -144,4 +144,13 @@ Add: Model DonDatHang, FlutterServiceDTO - class: TrangThaiDonHang, Departmentwa
 ---
 
 </details> 
+
+---
+
+<details open="" align="left">
+  <summary>  
+  # Update: page user acount 
+  </summary>
+    <img src="https://github.com/user-attachments/assets/1915805c-6cd4-47bf-9e86-b24cf07ac353" width="600"/>
+</details>
 
