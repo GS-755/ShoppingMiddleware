@@ -46,7 +46,7 @@ namespace ShoppingMiddleware.Controllers
         }
 
 
-
+        [HttpGet]
         // GET: NguoiDungs/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -78,14 +78,37 @@ namespace ShoppingMiddleware.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.NguoiDung.Add(nguoiDung);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.NguoiDung.Add(nguoiDung);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                {
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            ModelState.AddModelError(validationError.PropertyName, validationError.ErrorMessage);
+                            Console.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                        }
+                    }
+
+                    ModelState.AddModelError("", "Đã xảy ra lỗi khi lưu dữ liệu. Vui lòng kiểm tra lại các trường thông tin.");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Đã xảy ra lỗi hệ thống. Vui lòng thử lại.");
+                    Console.WriteLine($"Exception: {ex.Message}");
+                }
             }
 
+            // Đảm bảo rằng ViewBag.IDQuyen được thiết lập để dropdown list vẫn hoạt động khi trả về view
             ViewBag.IDQuyen = new SelectList(db.PhanQuyen, "IDQuyen", "TenQuyen", nguoiDung.IDQuyen);
             return View(nguoiDung);
         }
+
 
         // GET: NguoiDungs/Edit/5
         public async Task<ActionResult> Edit(int? id)

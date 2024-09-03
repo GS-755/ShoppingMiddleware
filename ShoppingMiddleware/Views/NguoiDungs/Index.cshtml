@@ -74,11 +74,24 @@
             <!-- Data table -->
         </div>
     </div>
+    </div>
 
     <script>
 window.onload = function () {
     loadPartial("Defaul");
-};
+         // xóa menu đã chọn trước đó.
+        var menuItems = document.querySelectorAll('.menu-item.active');
+            menuItems.forEach(function (item) {
+            item.classList.remove('active');
+        });
+
+        // lấy menu hiện tại.
+    var element = document.getElementById("UserList");
+            element.classList.add('active');
+
+
+
+    };
 
 $(document).ready(function() {
     $('#ProductStatus').change(function () {
@@ -101,4 +114,4 @@ function loadPartial(roleID) {
         $("#loadingSpinner").hide();
     });
 }
-    </script>
+</script>

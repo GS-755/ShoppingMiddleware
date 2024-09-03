@@ -4,101 +4,195 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>NguoiDung</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.TenND, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenND, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenND, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ho_TenDem, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ho_TenDem, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ho_TenDem, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.GioiTinh, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GioiTinh, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tuoi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Tuoi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Tuoi, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MatKhau, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TenDangNhap, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDQuyen, "IDQuyen", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IDQuyen", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDQuyen, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script src="../assets/vendor/js/helpers.js"></script>
+<style type="text/css">
+    .layout-menu-fixed .layout-navbar-full .layout-menu,
+    .layout-page {
+        padding-top: 0px !important;
+    }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    .content-wrapper {
+        padding-bottom: 0px !important;
+    }
+</style>
+
+
+@*</head>
+
+    <body>*@
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+        <!-- Layout container -->
+        <div class="">
+            <!-- Navbar -->
+            <!-- / Navbar -->
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+                <!-- Content -->
+
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="nav-align-top">
+                                <ul class="nav nav-pills flex-column flex-md-row mb-6 gap-2 gap-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link active waves-effect waves-light" href="javascript:void(0);"><i class="ri-group-line me-1_5"></i>Account</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link waves-effect waves-light" href="pages-account-settings-notifications.html"><i class="ri-notification-4-line me-1_5"></i>Notifications</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link waves-effect waves-light" href="pages-account-settings-connections.html"><i class="ri-link-m me-1_5"></i>Connections</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card mb-6">
+                                <!-- Account -->
+                                <div class="card-body">
+                                    <div class="d-flex align-items-start align-items-sm-center gap-6">
+                                        <img src="../assets/img/avatars/1.png" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
+                                        <div class="button-wrapper">
+                                            <label for="upload" class="btn btn-sm btn-primary me-3 mb-4 waves-effect waves-light" tabindex="0">
+                                                <span class="d-none d-sm-block">Upload new photo</span>
+                                                <i class="ri-upload-2-line d-block d-sm-none"></i>
+                                                <input type="file" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
+                                            </label>
+                                            <button type="button" class="btn btn-sm btn-outline-danger account-image-reset mb-4 waves-effect">
+                                                <i class="ri-refresh-line d-block d-sm-none"></i>
+                                                <span class="d-none d-sm-block">Reset</span>
+                                            </button>
+
+                                            <div>Allowed JPG, GIF or PNG. Max size of 800K</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="row mt-1 g-5">
+                                            <div class="col-md-6">
+                                                <div class="form-floating form-floating-outline">
+                                                    @Html.TextBoxFor(model => model.Ho_TenDem, new { @class = "form-control", @id = "firstName", @placeholder = "Enter your first name" })
+                                                    @Html.ValidationMessageFor(model => model.Ho_TenDem, "", new { @class = "text-danger" })                                                           
+                                                    <label for="firstName">First Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating form-floating-outline">
+                                                    @Html.TextBoxFor(model => model.TenND, new { @class = "form-control", @name = "lastName", @id = "lastName", @placeholder = "Enter your last name" })
+                                                    @Html.ValidationMessageFor(model => model.TenND, "", new { @class = "text-danger" })                                                           
+                                                    <label for="lastName">Last Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating form-floating-outline">
+                                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @type = "email", @name = "lastName", @id = "email", @placeholder = "Enter your email" })
+                                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })                                                           
+                                                    <label for="email">E-mail</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-merge">
+                                                    <div class="form-floating form-floating-outline">
+                                                        @Html.TextBoxFor(model => model.SDT, new { @class = "form-control", @type = "number", @name = "sđt", @id = "sđt", @placeholder = "Enter your NumberPhone" })
+                                                        <label for="phoneNumer">Phone Numer</label>
+                                                    </div>
+                                                    <span class="input-group-text">+84</span>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-floating form-floating-outline">
+                                                    @Html.TextBoxFor(model => model.Tuoi, new { @class = "form-control", @name = "Tuoi", @id = "Tuoi", @placeholder = "Enter your Age" })
+                                                    <label for="age">Age</label>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Tuoi, "", new { @class = "text-danger" })
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-merge">
+                                                    <div class="form-floating form-floating-outline">
+                                                        @Html.DropDownListFor(model => model.GioiTinh,
+                                                            new List<SelectListItem>
+                                                            {
+                                                                new SelectListItem { Text = "Khác", Value = "" },
+                                                                new SelectListItem { Text = "Nam", Value = "M" },
+                                                                new SelectListItem { Text = "Nữ", Value = "F" }
+
+                                                            },
+                                                            new { @class = "form-control", @id = "gioiTinh" })
+                                                        <label for="gioiTinh">Giới Tính</label>
+                                                    </div>
+                                                    <span class="input-group-text">&#x25BC;</span>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-md-6">
+                                                <div class="form-floating form-floating-outline">
+                                                    @Html.TextBoxFor(model => model.TenDangNhap, new { @class = "form-control", @name = "TenDangNhap", @id = "TenDangNhap", @placeholder = "Enter your TenDangNhap" })
+                                                    <label for="userName">User Name</label>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-floating form-floating-outline">
+                                                    @Html.TextBoxFor(model => model.MatKhau, new { @class = "form-control", @name = "MatKhau", @type = "password", @id = "MatKhau", @placeholder = "Enter your MatKhau" })
+                                                    <label for="password">password</label>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-merge">
+                                                    <div class="form-floating form-floating-outline">
+                                                        @Html.DropDownList("IDQuyen", null, htmlAttributes: new { @class = "form-control" })
+                                                        <label for="Role">Role</label>
+                                                    </div>
+                                                    <span class="input-group-text">&#x25BC;</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="mt-6">
+                                            <button type="submit" value="Create" class="btn btn-primary me-3 waves-effect waves-light">Create</button>
+                                            <button type="reset" class="btn btn-outline-secondary waves-effect">Reset</button>
+                                        </div>
+                                    }
+                                </div>
+                                <!-- /Account -->
+                            </div>
+                            <div class="card">
+                                <h5 class="card-header">Delete Account</h5>
+                                <div class="card-body">
+                                    <form id="formAccountDeactivation" onsubmit="return false">
+                                        <div class="form-check mb-6 ms-3">
+                                            <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation">
+                                            <label class="form-check-label" for="accountActivation">I confirm my account deactivation</label>
+                                        </div>
+                                        <button type="submit" class="btn btn-danger deactivate-account waves-effect waves-light" disabled="disabled">
+                                            Deactivate Account
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,11 +3,11 @@
     <table class="table table-sm">
         <thead>
             <tr>
-                <th class="text-truncate">Ngời Dùng</th>
+                <th class="text-truncate">Account</th>
                 <th class="text-truncate">Email</th>
-                <th class="text-truncate">Quyền</th>
-                <th class="text-truncate">Giới Tính</th>
-                <th class="text-truncate">Tuổi</th>
+                <th class="text-truncate">Roke</th>
+                <th class="text-truncate">gender</th>
+                <th class="text-truncate">Age</th>
                 <th></th>
             </tr>
         </thead>
@@ -72,15 +72,25 @@
                                 <i class="ri-more-2-line ri-24px"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
+
                                 @if (item.IDND == 1)
                                 {
-                                    <div class="dropdown-item">@Html.ActionLink("Details", "Details", "NguoiDungs", new { id = item.IDND })</div>
+
+                                    <div class="dropdown-item">
+                                        @Html.ActionLink("Details", "Details", "NguoiDungs", new { id = item.IDND }, new { @Class = "class-name" })
+                                    </div>
+
                                 }
                                 else
-                                {<div class="dropdown-item">@Html.ActionLink("Edit", "Edit", "NguoiDungs", new { id = item.IDND }, null)</div>
-                                <div class="dropdown-item">@Html.ActionLink("Details", "Details", "NguoiDungs", new { id = item.IDND })</div>
-                                <div class="dropdown-item">@Html.ActionLink("Delete", "Delete", "NguoiDungs", new { id = item.IDND })</div>
-                            }
+                                {
+
+                                    <div class="dropdown-item">@Html.ActionLink("Edit", "Edit", "NguoiDungs", new { id = item.IDND }, null)</div>
+                                    <div class="dropdown-item">
+                                        @Html.ActionLink("Details", "Details", "NguoiDungs", new { id = item.IDND }, new { @Class = "class-name" })
+                                    </div> 
+                                    <div class="dropdown-item">@Html.ActionLink("Delete", "Delete", "NguoiDungs", new { id = item.IDND }, new { @Class = "class-name" })</div>
+                                }
+
                             </div>
                         </div>
                     </td>
