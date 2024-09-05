@@ -52,14 +52,18 @@
                     </td>
                     @if (item.GioiTinh == "M")
                     {
-                        <td><span class="badge bg-label-warning rounded-pill"> @Html.DisplayFor(modelItem => item.GioiTinh)</span></td>
+                        <td><span class="badge bg-label-warning rounded-pill">@Html.DisplayFor(modelItem => item.GioiTinh)</span></td>
+                    }
+                    else if (item.GioiTinh == "F")
+                    {
+                        <td><span class="badge bg-label-success rounded-pill">@Html.DisplayFor(modelItem => item.GioiTinh)</span></td>
                     }
                     else
                     {
-                        <td><span class="badge bg-label-success rounded-pill"> @Html.DisplayFor(modelItem => item.GioiTinh)</span></td>
+                        <td><span class="badge bg-label-dark rounded-pill"> ? </span></td>
                     }
 
-                    <td><span class="text-truncate"> @Html.DisplayFor(modelItem => item.Tuoi)</span></td>
+                    <td><span class="text-truncate">@Html.DisplayFor(modelItem => item.Tuoi)</span></td>
 
                     <td class="text-truncate">
                         <div class="dropdown">
@@ -87,7 +91,7 @@
                                     <div class="dropdown-item">@Html.ActionLink("Edit", "Edit", "NguoiDungs", new { id = item.IDND }, null)</div>
                                     <div class="dropdown-item">
                                         @Html.ActionLink("Details", "Details", "NguoiDungs", new { id = item.IDND }, new { @Class = "class-name" })
-                                    </div> 
+                                    </div>
                                     <div class="dropdown-item">@Html.ActionLink("Delete", "Delete", "NguoiDungs", new { id = item.IDND }, new { @Class = "class-name" })</div>
                                 }
 

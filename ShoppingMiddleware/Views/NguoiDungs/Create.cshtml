@@ -4,9 +4,6 @@
     ViewBag.Title = "Create";
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 <script src="../assets/vendor/js/helpers.js"></script>
 <style type="text/css">
     .layout-menu-fixed .layout-navbar-full .layout-menu,
@@ -42,12 +39,6 @@
                                     <li class="nav-item">
                                         <a class="nav-link active waves-effect waves-light" href="javascript:void(0);"><i class="ri-group-line me-1_5"></i>Account</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link waves-effect waves-light" href="pages-account-settings-notifications.html"><i class="ri-notification-4-line me-1_5"></i>Notifications</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link waves-effect waves-light" href="pages-account-settings-connections.html"><i class="ri-link-m me-1_5"></i>Connections</a>
-                                    </li>
                                 </ul>
                             </div>
                             <div class="card mb-6">
@@ -55,19 +46,6 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-start align-items-sm-center gap-6">
                                         <img src="../assets/img/avatars/1.png" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
-                                        <div class="button-wrapper">
-                                            <label for="upload" class="btn btn-sm btn-primary me-3 mb-4 waves-effect waves-light" tabindex="0">
-                                                <span class="d-none d-sm-block">Upload new photo</span>
-                                                <i class="ri-upload-2-line d-block d-sm-none"></i>
-                                                <input type="file" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
-                                            </label>
-                                            <button type="button" class="btn btn-sm btn-outline-danger account-image-reset mb-4 waves-effect">
-                                                <i class="ri-refresh-line d-block d-sm-none"></i>
-                                                <span class="d-none d-sm-block">Reset</span>
-                                            </button>
-
-                                            <div>Allowed JPG, GIF or PNG. Max size of 800K</div>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">
@@ -80,22 +58,22 @@
                                         <div class="row mt-1 g-5">
                                             <div class="col-md-6">
                                                 <div class="form-floating form-floating-outline">
-                                                    @Html.TextBoxFor(model => model.Ho_TenDem, new { @class = "form-control", @id = "firstName", @placeholder = "Enter your first name" })
-                                                    @Html.ValidationMessageFor(model => model.Ho_TenDem, "", new { @class = "text-danger" })                                                           
+                                                    @Html.TextBoxFor(model => model.Ho_TenDem, new { @class = "form-control", onchange = "ShowResetButton()", @id = "firstName", @placeholder = "Enter your first name" })
+                                                    @Html.ValidationMessageFor(model => model.Ho_TenDem, "", new { @class = "text-danger" })
                                                     <label for="firstName">First Name</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-floating form-floating-outline">
                                                     @Html.TextBoxFor(model => model.TenND, new { @class = "form-control", @name = "lastName", @id = "lastName", @placeholder = "Enter your last name" })
-                                                    @Html.ValidationMessageFor(model => model.TenND, "", new { @class = "text-danger" })                                                           
+                                                    @Html.ValidationMessageFor(model => model.TenND, "", new { @class = "text-danger" })
                                                     <label for="lastName">Last Name</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-floating form-floating-outline">
                                                     @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @type = "email", @name = "lastName", @id = "email", @placeholder = "Enter your email" })
-                                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })                                                           
+                                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                                                     <label for="email">E-mail</label>
                                                 </div>
                                             </div>
@@ -126,13 +104,12 @@
                                                         @Html.DropDownListFor(model => model.GioiTinh,
                                                             new List<SelectListItem>
                                                             {
-                                                                new SelectListItem { Text = "Khác", Value = "" },
-                                                                new SelectListItem { Text = "Nam", Value = "M" },
-                                                                new SelectListItem { Text = "Nữ", Value = "F" }
-
+                                                                new SelectListItem { Text = "chooses", Value = "" },
+                                                                new SelectListItem { Text = "Male",  Value = "M" },
+                                                                new SelectListItem { Text = "Female",   Value = "F" }
                                                             },
                                                             new { @class = "form-control", @id = "gioiTinh" })
-                                                        <label for="gioiTinh">Giới Tính</label>
+                                                        <label for="gioiTinh">Gender</label>
                                                     </div>
                                                     <span class="input-group-text">&#x25BC;</span>
                                                 </div>
@@ -153,7 +130,14 @@
                                                     @Html.TextBoxFor(model => model.MatKhau, new { @class = "form-control", @name = "MatKhau", @type = "password", @id = "MatKhau", @placeholder = "Enter your MatKhau" })
                                                     <label for="password">password</label>
                                                 </div>
-                                                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                                                <span id="passwordDanger" style="display: none;" class="badge bg-danger rounded-pill"> </span>
+                                                <span id="passwordWaring" style="display: none;" class="badge bg-warning rounded-pill"> </span>
+                                                <span id="passwordSuccess" style="display: none;" class="badge bg-success rounded-pill"> </span>
+                                                <div>
+                                                    <p>
+                                                        @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger", @id = "text-danger" })
+                                                </p>
+                                                </div>
                                             </div>
 
                                             <div class="col-md-6">
@@ -169,24 +153,9 @@
                                         </div>
                                         <div class="mt-6">
                                             <button type="submit" value="Create" class="btn btn-primary me-3 waves-effect waves-light">Create</button>
-                                            <button type="reset" class="btn btn-outline-secondary waves-effect">Reset</button>
+                                            <button id="resetbnt" type="reset" onclick="reset()" class="btn btn-outline-secondary waves-effect">Reset</button>
                                         </div>
                                     }
-                                </div>
-                                <!-- /Account -->
-                            </div>
-                            <div class="card">
-                                <h5 class="card-header">Delete Account</h5>
-                                <div class="card-body">
-                                    <form id="formAccountDeactivation" onsubmit="return false">
-                                        <div class="form-check mb-6 ms-3">
-                                            <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation">
-                                            <label class="form-check-label" for="accountActivation">I confirm my account deactivation</label>
-                                        </div>
-                                        <button type="submit" class="btn btn-danger deactivate-account waves-effect waves-light" disabled="disabled">
-                                            Deactivate Account
-                                        </button>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -196,3 +165,112 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    window.onload = function () {
+        selectMenu("CreateUser");
+    }
+
+    // get element password value:
+    const textBox_Password = document.getElementById("MatKhau");
+
+    // input password:
+    textBox_Password.addEventListener("input", function () {
+        // setup:
+        const keyValues = this.value; // get value
+        // get message
+        const message_TextDanger = document.getElementById("text-danger");
+        let message_warning = "";
+
+        // get lables:
+        const lableWarning = document.getElementById("passwordWaring");
+        const lableDanger = document.getElementById("passwordDanger");
+        const lableSuccess = document.getElementById("passwordSuccess");
+
+        // Reset labels:
+        resetElement(
+            lableWarning,
+            lableDanger,
+            lableSuccess,
+            message_warning,
+            message_TextDanger
+        );
+
+        // Check password issues
+        if (keyValues.toLowerCase() == 'gs755@@.local' || keyValues.toLowerCase() == 'gs755') {
+            lableDanger.style.display = "inline-block";
+            message_warning = "từ ngữ xúc phạm nhân quyền ! chim kút";
+        }
+
+
+        else if (keyValues.length < 3) {
+            lableDanger.style.display = "inline-block";
+            message_warning = "Password must be greater or equal 6 characters.";
+        } else if (keyValues == '123456') {
+            lableDanger.style.display = "inline-block";
+            message_warning = "Password is very popular. Please! choose another password. (optional) Hê hê !";
+        }
+        else if (!/[0-9]/.test(keyValues) || !/[A-Z]/.test(keyValues) || !/[a-z]/.test(keyValues) || !/[!@@'#$%^&*(),.?":{}|<>]/.test(keyValues)) {
+
+            lableDanger.style.display = "inline-block";
+            lableDanger.classList.remove("bg-danger");
+            lableDanger.classList.add("bg-warning");
+
+            lableWarning.style.display = "inline-block";
+            message_warning = "password is not a strong password! a strong password is a password with: 1 capital letter. 2. lowercase letters. 3. special characters.\n4. has numerals.";
+        }
+        else {
+            strongPassword(
+                lableSuccess,
+                message_warning,
+                message_TextDanger
+            );
+            message_warning = "password is very 💪 haha.";
+        }
+
+        message_TextDanger.textContent = message_warning;
+    });
+
+    textBox_Password.addEventListener("blur", function () {
+        const keyValues = this.value;
+
+        // Nếu không có ký tự nào, ẩn tất cả các nhãn
+        if (keyValues.length === 0) {
+            document.getElementById("text-danger").textContent = "";
+            document.getElementById("passwordWaring").style.display = "none";
+            document.getElementById("passwordDanger").style.display = "none";
+            document.getElementById("passwordSuccess").style.display = "none";
+        }
+    });
+
+    function resetElement(lableWarning, lableDanger, lableSuccess, message_warning, message_TextDanger) {
+
+        lableWarning.style.display = "none";
+        lableDanger.style.display = "none";
+        lableSuccess.style.display = "none";
+
+        message_warning = "";
+        message_TextDanger.classList.remove("text-success");
+        message_TextDanger.classList.add("text-danger");
+
+        lableDanger.classList.remove("bg-warning");
+        lableDanger.classList.add("bg-danger");
+    }
+
+    function strongPassword(lableSuccess, message_warning, message_TextDanger) {
+
+        lableSuccess.style.display = "block";
+        message_TextDanger.classList.remove("text-danger");
+        message_TextDanger.classList.add("text-success");
+        message_TextDanger.textContent = message_warning;
+
+    }
+
+    // reset values button:
+    function reset() {
+        var fristname = document.getElementsByClassName("form-control")
+        fristname.value = "";
+    }
+
+</script>
