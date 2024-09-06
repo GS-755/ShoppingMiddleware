@@ -55,105 +55,118 @@
                                         @Html.AntiForgeryToken()
 
                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                        <div class="row mt-1 g-5">
-                                            <div class="col-md-6">
+                                    <div class="row mt-1 g-5">
+                                        <div class="col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                @Html.TextBoxFor(model => model.Ho_TenDem, new { @class = "form-control", onchange = "ShowResetButton()", @id = "firstName", @placeholder = "Enter your first name" })
+                                                @Html.ValidationMessageFor(model => model.Ho_TenDem, "", new { @class = "text-danger" })
+                                                <label for="firstName">First Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                @Html.TextBoxFor(model => model.TenND, new { @class = "form-control", @name = "lastName", @id = "lastName", @placeholder = "Enter your last name" })
+                                                @Html.ValidationMessageFor(model => model.TenND, "", new { @class = "text-danger" })
+                                                <label for="lastName">Last Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @type = "email", @name = "lastName", @id = "email", @placeholder = "Enter your email" })
+                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                                <label for="email">E-mail</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="input-group input-group-merge">
                                                 <div class="form-floating form-floating-outline">
-                                                    @Html.TextBoxFor(model => model.Ho_TenDem, new { @class = "form-control", onchange = "ShowResetButton()", @id = "firstName", @placeholder = "Enter your first name" })
-                                                    @Html.ValidationMessageFor(model => model.Ho_TenDem, "", new { @class = "text-danger" })
-                                                    <label for="firstName">First Name</label>
+                                                    @Html.TextBoxFor(model => model.SDT, new { @class = "form-control", @type = "number", @name = "sđt", @id = "sđt", @placeholder = "Enter your NumberPhone" })
+                                                    <label for="phoneNumer">Phone Numer</label>
                                                 </div>
+                                                <span class="input-group-text">+84</span>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-floating form-floating-outline">
-                                                    @Html.TextBoxFor(model => model.TenND, new { @class = "form-control", @name = "lastName", @id = "lastName", @placeholder = "Enter your last name" })
-                                                    @Html.ValidationMessageFor(model => model.TenND, "", new { @class = "text-danger" })
-                                                    <label for="lastName">Last Name</label>
-                                                </div>
+                                            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                @Html.TextBoxFor(model => model.Tuoi, new { @class = "form-control", @name = "Tuoi", @id = "Tuoi", @placeholder = "Enter your Age" })
+                                                <label for="age">Age</label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-floating form-floating-outline">
-                                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @type = "email", @name = "lastName", @id = "email", @placeholder = "Enter your email" })
-                                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                                    <label for="email">E-mail</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="input-group input-group-merge">
-                                                    <div class="form-floating form-floating-outline">
-                                                        @Html.TextBoxFor(model => model.SDT, new { @class = "form-control", @type = "number", @name = "sđt", @id = "sđt", @placeholder = "Enter your NumberPhone" })
-                                                        <label for="phoneNumer">Phone Numer</label>
-                                                    </div>
-                                                    <span class="input-group-text">+84</span>
-                                                </div>
-                                                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-floating form-floating-outline">
-                                                    @Html.TextBoxFor(model => model.Tuoi, new { @class = "form-control", @name = "Tuoi", @id = "Tuoi", @placeholder = "Enter your Age" })
-                                                    <label for="age">Age</label>
-                                                </div>
-                                                @Html.ValidationMessageFor(model => model.Tuoi, "", new { @class = "text-danger" })
-
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="input-group input-group-merge">
-                                                    <div class="form-floating form-floating-outline">
-                                                        @Html.DropDownListFor(model => model.GioiTinh,
-                                                            new List<SelectListItem>
-                                                            {
-                                                                new SelectListItem { Text = "chooses", Value = "" },
-                                                                new SelectListItem { Text = "Male",  Value = "M" },
-                                                                new SelectListItem { Text = "Female",   Value = "F" }
-                                                            },
-                                                            new { @class = "form-control", @id = "gioiTinh" })
-                                                        <label for="gioiTinh">Gender</label>
-                                                    </div>
-                                                    <span class="input-group-text">&#x25BC;</span>
-                                                </div>
-                                            </div>
-
-
-
-                                            <div class="col-md-6">
-                                                <div class="form-floating form-floating-outline">
-                                                    @Html.TextBoxFor(model => model.TenDangNhap, new { @class = "form-control", @name = "TenDangNhap", @id = "TenDangNhap", @placeholder = "Enter your TenDangNhap" })
-                                                    <label for="userName">User Name</label>
-                                                </div>
-                                                @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-floating form-floating-outline">
-                                                    @Html.TextBoxFor(model => model.MatKhau, new { @class = "form-control", @name = "MatKhau", @type = "password", @id = "MatKhau", @placeholder = "Enter your MatKhau" })
-                                                    <label for="password">password</label>
-                                                </div>
-                                                <span id="passwordDanger" style="display: none;" class="badge bg-danger rounded-pill"> </span>
-                                                <span id="passwordWaring" style="display: none;" class="badge bg-warning rounded-pill"> </span>
-                                                <span id="passwordSuccess" style="display: none;" class="badge bg-success rounded-pill"> </span>
-                                                <div>
-                                                    <p>
-                                                        @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger", @id = "text-danger" })
-                                                </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="input-group input-group-merge">
-                                                    <div class="form-floating form-floating-outline">
-                                                        @Html.DropDownList("IDQuyen", null, htmlAttributes: new { @class = "form-control" })
-                                                        <label for="Role">Role</label>
-                                                    </div>
-                                                    <span class="input-group-text">&#x25BC;</span>
-                                                </div>
-                                            </div>
+                                            @Html.ValidationMessageFor(model => model.Tuoi, "", new { @class = "text-danger" })
 
                                         </div>
+
+                                        <div class="col-md-6">
+                                            <div class="input-group input-group-merge">
+                                                <div class="form-floating form-floating-outline">
+                                                    @Html.DropDownListFor(model => model.GioiTinh,
+                                                        new List<SelectListItem>
+                                                        {
+                                                            new SelectListItem { Text = "chooses", Value = "" },
+                                                            new SelectListItem { Text = "Male",  Value = "M" },
+                                                            new SelectListItem { Text = "Female",   Value = "F" }
+                                                        },
+                                                        new { @class = "form-control", @id = "gioiTinh" })
+                                                    <label for="gioiTinh">Gender</label>
+                                                </div>
+                                                <span class="input-group-text">&#x25BC;</span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                @Html.Raw(Html.TextBoxFor(model => model.TenDangNhap, new { @class = "form-control", @name = "TenDangNhap", @id = "TenDangNhap", @placeholder = "Enter your TenDangNhap" }))
+                                                <label for="userName">User Name</label>
+                                            </div>
+
+                                            @if (ViewData.ModelState.ContainsKey("TenDangNhap") && ViewData.ModelState["TenDangNhap"].Errors.Count > 0)
+                                            {
+                                                foreach (var error in ViewData.ModelState["TenDangNhap"].Errors)
+                                                {
+                                                    @Html.Raw($"<span class='text-danger'>{error.ErrorMessage}</span><br />")
+                                                }
+                                            }
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-floating form-floating-outline">
+                                                @Html.TextBoxFor(model => model.MatKhau, new { @class = "form-control", @name = "MatKhau", @type = "password", @id = "MatKhau", @placeholder = "Enter your password" })
+                                                <label for="password">password</label>
+                                            </div>
+                                            <span id="passwordDanger" style="display: none;" class="badge bg-danger rounded-pill"> </span>
+                                            <span id="passwordWaring" style="display: none;" class="badge bg-warning rounded-pill"> </span>
+                                            <span id="passwordSuccess" style="display: none;" class="badge bg-success rounded-pill"> </span>
+                                            <div>
+                                                <p id="ValidPasswordByJS">
+                                                    @if (ViewData.ModelState.ContainsKey("MatKhau") && ViewData.ModelState["MatKhau"].Errors.Count > 0)
+                                                    {
+                                                        foreach (var error in ViewData.ModelState["MatKhau"].Errors)
+                                                        {
+                                                            @Html.Raw($"<span class='text-danger'>{error.ErrorMessage}</span><br />")
+                                                        }
+                                                    }
+                                                </p >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="input-group input-group-merge">
+                                                <div class="form-floating form-floating-outline">
+                                                    @Html.DropDownList("IDQuyen", null, htmlAttributes: new { @class = "form-control" })
+                                                    <label for="Role">Role</label>
+                                                </div>
+                                                <span class="input-group-text">&#x25BC;</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                         <div class="mt-6">
                                             <button type="submit" value="Create" class="btn btn-primary me-3 waves-effect waves-light">Create</button>
-                                            <button id="resetbnt" type="reset" onclick="reset()" class="btn btn-outline-secondary waves-effect">Reset</button>
+                                            <button id="resetbnt" type="reset" class="btn btn-outline-secondary waves-effect">Reset</button>
                                         </div>
                                     }
                                 </div>
@@ -165,6 +178,7 @@
         </div>
     </div>
 </div>
+
 
 <script>
 
@@ -180,7 +194,7 @@
         // setup:
         const keyValues = this.value; // get value
         // get message
-        const message_TextDanger = document.getElementById("text-danger");
+        const message_TextDanger = document.getElementById("ValidPasswordByJS");
         let message_warning = "";
 
         // get lables:
@@ -237,7 +251,7 @@
 
         // Nếu không có ký tự nào, ẩn tất cả các nhãn
         if (keyValues.length === 0) {
-            document.getElementById("text-danger").textContent = "";
+            document.getElementById("ValidPasswordByJS").textContent = "";
             document.getElementById("passwordWaring").style.display = "none";
             document.getElementById("passwordDanger").style.display = "none";
             document.getElementById("passwordSuccess").style.display = "none";
@@ -265,12 +279,6 @@
         message_TextDanger.classList.add("text-success");
         message_TextDanger.textContent = message_warning;
 
-    }
-
-    // reset values button:
-    function reset() {
-        var fristname = document.getElementsByClassName("form-control")
-        fristname.value = "";
     }
 
 </script>

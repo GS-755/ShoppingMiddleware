@@ -17,7 +17,6 @@ namespace ShoppingMiddleware.Controllers
         // GET: NguoiDungs
         public async Task<ActionResult> Index()
         {
-            //var nguoiDung = db.NguoiDung.Include(n => n.PhanQuyen);
             var phanquyen = db.PhanQuyen.ToListAsync();
             return View(await phanquyen);
         }
@@ -26,12 +25,14 @@ namespace ShoppingMiddleware.Controllers
         [HttpGet]
         public async Task<ActionResult> UsersTable(string roleID)
         {
-            if(roleID == "Defaul")
+            // Account list:
+            if (roleID == "Defaul")
             {
                 var userList = db.NguoiDung.ToList();
                 return PartialView("NguoiDung", userList);
             }
 
+            // Account by id:
             IQueryable<NguoiDung> usersQuery = db.NguoiDung;
 
             if (!string.IsNullOrEmpty(roleID) && int.TryParse(roleID, out int parsedRoleID))
@@ -39,6 +40,7 @@ namespace ShoppingMiddleware.Controllers
                 usersQuery = usersQuery.Where(u => u.IDQuyen == parsedRoleID);
             }
 
+            // Pratial View table Account list:
             var users = await usersQuery.ToListAsync();
             return PartialView("NguoiDung", users);
         }
@@ -78,70 +80,128 @@ namespace ShoppingMiddleware.Controllers
             {
                 try
                 {
-                    // dỡn cho zui.
-                    string[] tu_Ngu_Nhan_Dien_Doi_Tuong = new string[] { "gs755@.local", "gs755", "gs755@local.com", "nguyenminhtri"};
-                    if (nguoiDung.TenDangNhap.IsEmpty())
+                    // check user is exist:
+                    var exist = db.NguoiDung.Where(n => n.TenDangNhap == nguoiDung.TenDangNhap).Count();
+                    if (exist >= 1)
                     {
-                        ModelState.AddModelError("TenDangNhap", "tài khoản không được trống.");
-                    } else if (nguoiDung.MatKhau.IsEmpty())
-                    {
-                        ModelState.AddModelError("MatKhau", "Mật Khẩu không được trống.");
+                        ModelState.AddModelError(
+                            // field Model:
+                            "",
+                            // message:
+                            $"xin lỗi tài khoản" +
+                            $" {nguoiDung.TenDangNhap} " +
+                            $"này đã được đăng ký từ trước đó.");
 
                     }
+
+                    // if Account is not exist => check Regex values:
                     else
                     {
-                        if (nguoiDung.TenDangNhap.ToLower() == tu_Ngu_Nhan_Dien_Doi_Tuong[0]
-                            || nguoiDung.TenDangNhap.ToLower() == tu_Ngu_Nhan_Dien_Doi_Tuong[1]
-                            || nguoiDung.TenDangNhap.ToLower() == tu_Ngu_Nhan_Dien_Doi_Tuong[2]
-                            || nguoiDung.TenDangNhap.ToLower() == tu_Ngu_Nhan_Dien_Doi_Tuong[3])
+                        /* ************************ Documents ************************
+                            
+                        RegexValues:
+                            => messages: List[string] show message invalid values.
+                            => functions: 
+                                 + UserNameIsValid(string) => bool
+                                 + IsStrongPassword(string) => bool
+                                 + 
+
+                           ************************ Documents ************************ */
+
+                        // setup:
+                        RegexValues regexValues = new RegexValues();
+                        string listRegex;
+
+                        // check regex user name:
+                        if (!regexValues.UserNameIsValid(nguoiDung.TenDangNhap))
                         {
-                            ModelState.AddModelError("TenDangNhap", $"À thằng Trí Nguyễn ! từ ngữ xúc phạm nhân quyền ! BAN 1000 năm 🐤 kút khỏi hệ thống ! :3 ");
+                            /*
+                             * todo: list default = "";
+                             */
+                            listRegex = "";
+
+                            // show list regex:
+                            foreach (string mess in regexValues.messages)
+                            {
+                                // Add regex message to list:
+                                listRegex +=
+                                $"<br />" +
+                                $". {mess}";
+                            }
+
+                            ModelState.AddModelError(
+                            // Field Model:
+                            "TenDangNhap",
+                            // messages:
+                            $"User name {nguoiDung.TenDangNhap} " +
+                            $"violates our policy: " +
+                            // list regex:
+                            listRegex
+                           );
+                        }
+                        // Check password regex:
+                        else if (!regexValues.IsStrongPassword(nguoiDung.MatKhau))
+                        {
+                            /*
+                             * todo: list default = "";
+                             */
+                            listRegex = "";
+
+                            // show list regex:
+                            foreach (string mess in regexValues.messages)
+                            {
+                                // Add regex message to list:
+                                listRegex +=
+                                $"<br />" +
+                                $". {mess}";
+                            }
+
+                            ModelState.AddModelError(
+                            // Field Model:
+                            "MatKhau",
+                            // messages:
+                            $"password " +
+                            $"violates our policy: " +
+                            // list regex:
+                            listRegex
+                           );
+
+
+                        }
+                        // Check password regex:
+                        else if (!regexValues.PhoneNumberValid(nguoiDung.SDT))
+                        {
+                            /*
+                             * todo: list default = "";
+                             */
+                            listRegex = "";
+
+                            // show list regex:
+                            foreach (string mess in regexValues.messages)
+                            {
+                                // Add regex message to list:
+                                listRegex +=
+                                $"<br />" +
+                                $". {mess}";
+                            }
+
+                            ModelState.AddModelError(
+                            // Field Model:
+                            "SDT",
+                            // messages:
+                            $"Phone number " +
+                            $"violates our policy: " +
+                            // list regex:
+                            listRegex
+                           );
                         }
                         else
                         {
-
-                            // Check user is exist.
-                            var exist = db.NguoiDung.Where(n => n.TenDangNhap == nguoiDung.TenDangNhap).Count();
-
-                            if (nguoiDung.TenDangNhap.Length == 0)
-                            {
-                                ModelState.AddModelError("TenDangNhap", "tài khoản không được trống.");
-
-                            }
-                            else if (nguoiDung.MatKhau.Length == 0)
-                            {
-                                ModelState.AddModelError("TenDangNhap", "mật khẩu không được trống.");
-
-                            }
-                            else if (nguoiDung.MatKhau.Length <= 6)
-                            {
-                                ModelState.AddModelError("", "mật khẩu quá ngắn hãy thử mật khẩu khác !");
-
-                            }
-                            else if (nguoiDung.MatKhau.Length >= 10 || nguoiDung.TenDangNhap.Length >= 10)
-                            {
-                                ModelState.AddModelError("", "Tên người dùng hoặc mật khẩu quá dài !");
-
-                            }
-                            else if (exist >= 1)
-                            {
-                                ModelState.AddModelError("MatKhau", $"xin lỗi tài khoản {nguoiDung.TenDangNhap} này đã được đăng ký từ trước đó.");
-                            }
-                            // check speace charater
-                            else if (nguoiDung.TenDangNhap.Contains(" ") && nguoiDung.MatKhau.Contains(" "))
-                            {
-                                ModelState.AddModelError("", $"Không được có khoản trắng.");
-                            }
-                            // user is not exist => Create user Account.
-                            else
-                            {
-                                db.NguoiDung.Add(nguoiDung);
-                                await db.SaveChangesAsync();
-                                return RedirectToAction("Index");
-                            }
+                            db.NguoiDung.Add(nguoiDung);
+                            //await db.SaveChangesAsync();
+                            return RedirectToAction("Index");
                         }
                     }
-
                 }
                 catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
                 {
@@ -150,7 +210,7 @@ namespace ShoppingMiddleware.Controllers
                         foreach (var validationError in validationErrors.ValidationErrors)
                         {
                             ModelState.AddModelError(validationError.PropertyName, validationError.ErrorMessage);
-                        //  Console.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                            //  Console.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
                         }
                     }
 
@@ -159,7 +219,7 @@ namespace ShoppingMiddleware.Controllers
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("", "Đã xảy ra lỗi hệ thống. Vui lòng thử lại.");
-                //  Console.WriteLine($"Exception: {ex.Message}");
+                    //  Console.WriteLine($"Exception: {ex.Message}");
                 }
             }
 
@@ -238,5 +298,5 @@ namespace ShoppingMiddleware.Controllers
     }
 
 
-    
+
 }
