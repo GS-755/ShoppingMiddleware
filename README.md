@@ -186,7 +186,11 @@ Add: Model DonDatHang, FlutterServiceDTO - class: TrangThaiDonHang, Departmentwa
   <summary>  
   # Update: Update Create user validations.
   </summary>
-  
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/cc4263a3-d1dc-447d-95e9-deca0a9fb4d5" width="200"/>
+</p>
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/a2ab211c-38a7-4836-b6a5-b5e6969a7c29" width="600"/>
 </p>
