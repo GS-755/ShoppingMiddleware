@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ShoppingMiddleware.Models;
+using ShoppingMiddleware.Models.Flutter;
 
 namespace ShoppingMiddleware.Controllers
 {
@@ -16,10 +17,62 @@ namespace ShoppingMiddleware.Controllers
         private BackendFlutter2024Entities db = new BackendFlutter2024Entities();
 
         // GET: SanPhams
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var sanPham = db.SanPham.Include(s => s.LoaiSP).Include(s => s.MauSac).Include(s => s.NhanVien).Include(s => s.ThuongHieu).Include(s => s.TrangThai);
-            return View(await sanPham.ToListAsync());
+            var sanPhams = db.SanPham
+                     .Include(s => s.LoaiSP)
+                     .Include(s => s.MauSac)
+                     .Include(s => s.ThuongHieu)
+                     .Include(s => s.TrangThai)
+                     .Include(s => s.ChiTiet_SP.Select(c => c.KichThuoc))
+                     .Include(s => s.HinhAnh)
+                     .Include(s => s.DanhGia)
+                     .ToList();
+
+            var productInformations = sanPhams.Select(sp => new ProductInformations
+            {
+                // SanPham
+                IDSP = sp.IDSP,
+                TenSP = sp.TenSP,
+
+                // ChiTiet_SP
+                MoTa = sp.ChiTiet_SP.FirstOrDefault()?.MoTa,
+                GiaBan = sp.ChiTiet_SP.FirstOrDefault()?.GiaBan ?? 0,
+                GiaMua = sp.ChiTiet_SP.FirstOrDefault()?.GiaMua ?? 0,
+                SoLuong = sp.ChiTiet_SP.FirstOrDefault()?.SoLuong ?? 0,
+                IDKichThuoc = sp.ChiTiet_SP.FirstOrDefault()?.KichThuoc.IDKichThuoc ?? 0,
+                KichThuoc = sp.ChiTiet_SP.FirstOrDefault()?.KichThuoc.Sodo,
+                DonVi = sp.ChiTiet_SP.FirstOrDefault()?.KichThuoc.DonVi,
+
+                // ThuongHieu
+                IDThuongHieu = sp.ThuongHieu.IDThuongHieu,
+                TenThuongHieu = sp.ThuongHieu.TenThuongHieu,
+
+                // NhanVien
+                TenNV = sp.NhanVien.TenNV,
+
+                // LoaiSP
+                IDLoai = sp.LoaiSP.IDLoai,
+                TenLoaiSP = sp.LoaiSP.TenLoai,
+
+                // MauSac
+                IDMau = sp.MauSac.IDMau,
+                TenMau = sp.MauSac.TenMau,
+
+                // HinhAnh
+                HinhAnhs = sp.HinhAnh.Select(h => h.TenHinh).ToList(),
+
+                // TrangThai
+                IDTrangThai = sp.TrangThai.IDTrangThai,
+                TenTrangThai = sp.TrangThai.TenTrangThaI,
+
+                // DanhGia
+                DanhGias = sp.DanhGia.ToList(),
+
+                // CT_DonDatHang
+                CT_DonDatHangs = sp.CT_DonDatHang.ToList()
+            }).ToList();
+            return View(productInformations);
         }
 
         // GET: SanPhams/Details/5
