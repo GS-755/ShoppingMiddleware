@@ -295,8 +295,28 @@ namespace ShoppingMiddleware.Controllers
             }
             base.Dispose(disposing);
         }
+    
+        public ActionResult Totaluserbill(int? userID)
+        {
+            var total = db.DonDatHang.Where(n => n.IDND == userID).Count();
+            return PartialView("PartialView_Totals", total);
+        }
+
+        public ActionResult Totaluserlike(int? userID)
+        {
+            // total user's favorite products
+            var favorites = db.NguoiDung
+                .Where(n => n.IDND == userID)
+                .SelectMany(n => n.SanPham)
+                .Count();
+            return PartialView("PartialView_Totals", favorites);
+        }
+
+        public ActionResult PartialView_TableUserOrderBill(int? userID)
+        {
+            var UserOrders = db.DonDatHang.Where(d => d.IDND == userID).ToList();
+            return PartialView("PartialView_TableUserOrderBill", UserOrders);
+        }
+
     }
-
-
-
 }

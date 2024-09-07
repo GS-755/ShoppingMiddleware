@@ -436,6 +436,8 @@
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\NguoiDungs\Nguoidung.cshtml" />
     <Content Include="Views\Home\ProductList.cshtml" />
+    <Content Include="Views\NguoiDungs\PartialView_Totals.cshtml" />
+    <Content Include="Views\NguoiDungs\PartialView_TableUserOrderBill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

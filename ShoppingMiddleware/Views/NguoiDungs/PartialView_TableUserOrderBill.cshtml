@@ -1,0 +1,117 @@
+﻿@using ShoppingMiddleware.Models
+@model IEnumerable<ShoppingMiddleware.Models.DonDatHang>
+
+
+@{
+    // class TrangThaiDonHang => Order status.
+    TrangThaiDonHang trangThaiDonHang = new TrangThaiDonHang();
+
+}
+
+<div class="card mb-4">
+    <div class="card-datatable table-responsive">
+        <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+            <div class="card-header d-flex">
+                <div class="head-label">
+                    <h5 class="card-title mb-0">Invoice List</h5>
+                </div>
+            </div>
+            <table class="table datatable-invoice dataTable no-footer dtr-column" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info" style="width: 870px;">
+                <thead>
+                    <tr>
+                        <th class="control sorting dtr-hidden" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 0px; display: none;" aria-label=": activate to sort column ascending">
+                        </th>
+                        <th class="sorting sorting_desc" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 92px;" aria-label="#: activate to sort column ascending" aria-sort="descending">
+                            @Html.DisplayNameFor(model => model.TrangThai)
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 109px;" aria-label="Status: activate to sort column ascending">
+                            @Html.DisplayNameFor(model => model.PhiGiaoHang)
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 95px;" aria-label="Total: activate to sort column ascending">
+                            @Html.DisplayNameFor(model => model.TongTien)
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 164px;" aria-label="Issued Date: activate to sort column ascending">
+                            @Html.DisplayNameFor(model => model.NgayDat)
+                        </th>
+                        <th class="sorting sorting_desc" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 92px;" aria-label="#: activate to sort column ascending" aria-sort="descending">
+                            Người Nhận
+                        </th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 190px;" aria-label="Action">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    // Get color class.
+                    string color;
+                    <tbody>
+                        <tr class="odd">
+                            <td class="  control" tabindex="0" style="display: none;"></td>
+
+                            @* Để tạm nơi này ! KKK - từ từ xử lý sau ! *@
+
+                            @if (item.TrangThai == trangThaiDonHang.DangXuLy) {
+                                color = "info";
+                            }
+                            else if (item.TrangThai == trangThaiDonHang.DaGiaoHang) {
+                                color = "success";
+                            }
+                            else if (item.TrangThai == trangThaiDonHang.DangNhapCanh) {
+                                color = "light";
+                            }
+                            else if (item.TrangThai == trangThaiDonHang.ChoLayHang) {
+                                color = "danger";
+                            }
+                            else if (item.TrangThai == trangThaiDonHang.ChoDongGoi) {
+                                color = "dark";
+                            }
+                            else if (item.TrangThai == trangThaiDonHang.DangVanChuyen) {
+                                color = "primary";
+                            }
+                            else if (item.TrangThai == trangThaiDonHang.DangXuatCang)  {
+                                color = "secondary";
+                            }
+                            else if (item.TrangThai == trangThaiDonHang.DangXuLy) {
+                                color = "gray";
+                            }
+                            else if (item.TrangThai == trangThaiDonHang.DenKhoCuc) {
+                                color = "info";
+                            }
+                            else {
+                                color = "info";
+                            }
+
+                            <td><span class="badge rounded-pill bg-label-@color" text-capitalized="">@Html.DisplayFor(model => item.TrangThai)</span></td>
+
+                            <td>
+                                <div class="d-inline-flex" data-bs-toggle="tooltip" data-bs-html="true">
+                                    @Html.DisplayFor(modelItem => item.PhiGiaoHang) / VNĐ
+                                </div>
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TongTien)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgayDat)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NguoiDung.Ho_TenDem)  @Html.DisplayFor(modelItem => item.NguoiDung.TenND)
+                            </td>
+
+                            <td class="text-truncate">
+                                @Html.ActionLink("Details", "Details", "NguoiDungs", new { id = item.IDND }, new { @Class = "class-name" })
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                }
+            </table>
+            @*<div class="row mx-5 row-gap-2"><div class="col-sm-12 col-xxl-6 pe-5"><div class="dataTables_info" id="DataTables_Table_1_info" role="status" aria-live="polite">Showing 1 to 7 of 50 entries</div></div><div class="col-sm-12 col-xxl-6"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="DataTables_Table_1_previous"><a aria-controls="DataTables_Table_1" aria-disabled="true" role="link" data-dt-idx="previous" tabindex="-1" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_1" role="link" aria-current="page" data-dt-idx="0" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_1" role="link" data-dt-idx="1" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_1" role="link" data-dt-idx="2" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_1" role="link" data-dt-idx="3" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_1" role="link" data-dt-idx="4" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item disabled" id="DataTables_Table_1_ellipsis"><a aria-controls="DataTables_Table_1" aria-disabled="true" role="link" data-dt-idx="ellipsis" tabindex="-1" class="page-link">…</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_1" role="link" data-dt-idx="7" tabindex="0" class="page-link">8</a></li><li class="paginate_button page-item next" id="DataTables_Table_1_next"><a href="#" aria-controls="DataTables_Table_1" role="link" data-dt-idx="next" tabindex="0" class="page-link">Next</a></li></ul></div></div></div>*@
+        </div>
+    </div>
+</div>
