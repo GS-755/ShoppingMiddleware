@@ -45,7 +45,7 @@
 
         [HttpGet]
         // xử lý trạng thái đơn hàng =>  params (
-        // nameid: item của tên Kho cục `Departmentwarehouses`,
+        // nameid: item của tên Kho cục `Departmentwarehouses`, ( lưu ý: array cố định do data còn ít, muốn thêm tạo table thay thế về sau !)
         // status: trang thái đơn hàng `TrangThaiDonHang.<Status muốn lấy>`
         // )
         public ActionResult Config_StatusOrder_Demo(int nameid, string status)
@@ -77,7 +77,7 @@
         }
 
 
-
+        /* chưa dùng đến vì thấy hơi ... :)) !*/
         [HttpGet]
         public ActionResult LoadPartial(string partialViewName)
         {

@@ -4,18 +4,6 @@
     ViewBag.Title = "Create";
 }
 
-<script src="../assets/vendor/js/helpers.js"></script>
-<style type="text/css">
-    .layout-menu-fixed .layout-navbar-full .layout-menu,
-    .layout-page {
-        padding-top: 0px !important;
-    }
-
-    .content-wrapper {
-        padding-bottom: 0px !important;
-    }
-</style>
-
 
 @*</head>
 
@@ -55,115 +43,121 @@
                                         @Html.AntiForgeryToken()
 
                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    <div class="row mt-1 g-5">
-                                        <div class="col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                @Html.TextBoxFor(model => model.Ho_TenDem, new { @class = "form-control", onchange = "ShowResetButton()", @id = "firstName", @placeholder = "Enter your first name" })
-                                                @Html.ValidationMessageFor(model => model.Ho_TenDem, "", new { @class = "text-danger" })
-                                                <label for="firstName">First Name</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                @Html.TextBoxFor(model => model.TenND, new { @class = "form-control", @name = "lastName", @id = "lastName", @placeholder = "Enter your last name" })
-                                                @Html.ValidationMessageFor(model => model.TenND, "", new { @class = "text-danger" })
-                                                <label for="lastName">Last Name</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @type = "email", @name = "lastName", @id = "email", @placeholder = "Enter your email" })
-                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                                <label for="email">E-mail</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="input-group input-group-merge">
+                                        <div class="row mt-1 g-5">
+                                            <div class="col-md-6">
                                                 <div class="form-floating form-floating-outline">
-                                                    @Html.TextBoxFor(model => model.SDT, new { @class = "form-control", @type = "number", @name = "sđt", @id = "sđt", @placeholder = "Enter your NumberPhone" })
-                                                    <label for="phoneNumer">Phone Numer</label>
+                                                    @Html.TextBoxFor(model => model.Ho_TenDem, new { @class = "form-control", onchange = "ShowResetButton()", @id = "firstName", @placeholder = "Enter your first name" })
+                                                    @Html.ValidationMessageFor(model => model.Ho_TenDem, "", new { @class = "text-danger" })
+                                                    <label for="firstName">First Name</label>
                                                 </div>
-                                                <span class="input-group-text">+84</span>
                                             </div>
-                                            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                @Html.TextBoxFor(model => model.Tuoi, new { @class = "form-control", @name = "Tuoi", @id = "Tuoi", @placeholder = "Enter your Age" })
-                                                <label for="age">Age</label>
-                                            </div>
-                                            @Html.ValidationMessageFor(model => model.Tuoi, "", new { @class = "text-danger" })
-
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="input-group input-group-merge">
+                                            <div class="col-md-6">
                                                 <div class="form-floating form-floating-outline">
-                                                    @Html.DropDownListFor(model => model.GioiTinh,
-                                                        new List<SelectListItem>
-                                                        {
-                                                            new SelectListItem { Text = "chooses", Value = "" },
-                                                            new SelectListItem { Text = "Male",  Value = "M" },
-                                                            new SelectListItem { Text = "Female",   Value = "F" }
-                                                        },
-                                                        new { @class = "form-control", @id = "gioiTinh" })
-                                                    <label for="gioiTinh">Gender</label>
+                                                    @Html.TextBoxFor(model => model.TenND, new { @class = "form-control", @name = "lastName", @id = "lastName", @placeholder = "Enter your last name" })
+                                                    @Html.ValidationMessageFor(model => model.TenND, "", new { @class = "text-danger" })
+                                                    <label for="lastName">Last Name</label>
                                                 </div>
-                                                <span class="input-group-text">&#x25BC;</span>
                                             </div>
-                                        </div>
-
-
-                                        <div class="col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                @Html.Raw(Html.TextBoxFor(model => model.TenDangNhap, new { @class = "form-control", @name = "TenDangNhap", @id = "TenDangNhap", @placeholder = "Enter your TenDangNhap" }))
-                                                <label for="userName">User Name</label>
+                                            <div class="col-md-6">
+                                                <div class="form-floating form-floating-outline">
+                                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @type = "email", @name = "lastName", @id = "email", @placeholder = "Enter your email" })
+                                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                                    <label for="email">E-mail</label>
+                                                </div>
                                             </div>
 
-                                            @if (ViewData.ModelState.ContainsKey("TenDangNhap") && ViewData.ModelState["TenDangNhap"].Errors.Count > 0)
-                                            {
-                                                foreach (var error in ViewData.ModelState["TenDangNhap"].Errors)
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-merge">
+                                                    <div class="form-floating form-floating-outline">
+                                                        @Html.TextBoxFor(model => model.SDT, new { @class = "form-control", @type = "number", @name = "sđt", @id = "sđt", @placeholder = "Enter your NumberPhone" })
+                                                        <label for="phoneNumer">Phone Numer</label>
+                                                    </div>
+                                                    <span class="input-group-text">+84</span>
+                                                </div>
+                                                @if (ViewData.ModelState.ContainsKey("SDT") && ViewData.ModelState["SDT"].Errors.Count > 0)
                                                 {
-                                                    @Html.Raw($"<span class='text-danger'>{error.ErrorMessage}</span><br />")
-                                                }
-                                            }
-                                        </div>
-
-
-                                        <div class="col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                @Html.TextBoxFor(model => model.MatKhau, new { @class = "form-control", @name = "MatKhau", @type = "password", @id = "MatKhau", @placeholder = "Enter your password" })
-                                                <label for="password">password</label>
-                                            </div>
-                                            <span id="passwordDanger" style="display: none;" class="badge bg-danger rounded-pill"> </span>
-                                            <span id="passwordWaring" style="display: none;" class="badge bg-warning rounded-pill"> </span>
-                                            <span id="passwordSuccess" style="display: none;" class="badge bg-success rounded-pill"> </span>
-                                            <div>
-                                                <p id="ValidPasswordByJS">
-                                                    @if (ViewData.ModelState.ContainsKey("MatKhau") && ViewData.ModelState["MatKhau"].Errors.Count > 0)
+                                                    foreach (var error in ViewData.ModelState["SDT"].Errors)
                                                     {
-                                                        foreach (var error in ViewData.ModelState["MatKhau"].Errors)
-                                                        {
-                                                            @Html.Raw($"<span class='text-danger'>{error.ErrorMessage}</span><br />")
-                                                        }
+                                                        @Html.Raw($"<span class='text-danger'>{error.ErrorMessage}</span><br />")
                                                     }
-                                                </p >
+                                                }
                                             </div>
-                                        </div>
 
-                                        <div class="col-md-6">
-                                            <div class="input-group input-group-merge">
+                                            <div class="col-md-6">
                                                 <div class="form-floating form-floating-outline">
-                                                    @Html.DropDownList("IDQuyen", null, htmlAttributes: new { @class = "form-control" })
-                                                    <label for="Role">Role</label>
+                                                    @Html.TextBoxFor(model => model.Tuoi, new { @class = "form-control", @name = "Tuoi", @id = "Tuoi", @placeholder = "Enter your Age" })
+                                                    <label for="age">Age</label>
                                                 </div>
-                                                <span class="input-group-text">&#x25BC;</span>
-                                            </div>
-                                        </div>
+                                                @Html.ValidationMessageFor(model => model.Tuoi, "", new { @class = "text-danger" })
 
-                                    </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-merge">
+                                                    <div class="form-floating form-floating-outline">
+                                                        @Html.DropDownListFor(model => model.GioiTinh,
+                                                            new List<SelectListItem>
+                                                            {
+                                                                new SelectListItem { Text = "chooses", Value = "" },
+                                                                new SelectListItem { Text = "Male",  Value = "M" },
+                                                                new SelectListItem { Text = "Female",   Value = "F" }
+                                                            },
+                                                            new { @class = "form-control", @id = "gioiTinh" })
+                                                        <label for="gioiTinh">Gender</label>
+                                                    </div>
+                                                    <span class="input-group-text">&#x25BC;</span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-6">
+                                                <div class="form-floating form-floating-outline">
+                                                    @Html.Raw(Html.TextBoxFor(model => model.TenDangNhap, new { @class = "form-control", @name = "TenDangNhap", @id = "TenDangNhap", @placeholder = "Enter your TenDangNhap" }))
+                                                    <label for="userName">User Name</label>
+                                                </div>
+
+                                                @if (ViewData.ModelState.ContainsKey("TenDangNhap") && ViewData.ModelState["TenDangNhap"].Errors.Count > 0)
+                                                {
+                                                    foreach (var error in ViewData.ModelState["TenDangNhap"].Errors)
+                                                    {
+                                                        @Html.Raw($"<span class='text-danger'>{error.ErrorMessage}</span><br />")
+                                                    }
+                                                }
+                                            </div>
+
+
+                                            <div class="col-md-6">
+                                                <div class="form-floating form-floating-outline">
+                                                    @Html.TextBoxFor(model => model.MatKhau, new { @class = "form-control", @name = "MatKhau", @type = "password", @id = "MatKhau", @placeholder = "Enter your password" })
+                                                    <label for="password">password</label>
+                                                </div>
+                                                <span id="passwordDanger" style="display: none;" class="badge bg-danger rounded-pill"> </span>
+                                                <span id="passwordWaring" style="display: none;" class="badge bg-warning rounded-pill"> </span>
+                                                <span id="passwordSuccess" style="display: none;" class="badge bg-success rounded-pill"> </span>
+                                                <div>
+                                                    <p id="ValidPasswordByJS">
+                                                        @if (ViewData.ModelState.ContainsKey("MatKhau") && ViewData.ModelState["MatKhau"].Errors.Count > 0)
+                                                        {
+                                                            foreach (var error in ViewData.ModelState["MatKhau"].Errors)
+                                                            {
+                                                                @Html.Raw($"<span class='text-danger'>{error.ErrorMessage}</span><br />")
+                                                            }
+                                                        }
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-merge">
+                                                    <div class="form-floating form-floating-outline">
+                                                        @Html.DropDownList("IDQuyen", null, htmlAttributes: new { @class = "form-control" })
+                                                        <label for="Role">Role</label>
+                                                    </div>
+                                                    <span class="input-group-text">&#x25BC;</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                         <div class="mt-6">
                                             <button type="submit" value="Create" class="btn btn-primary me-3 waves-effect waves-light">Create</button>
                                             <button id="resetbnt" type="reset" class="btn btn-outline-secondary waves-effect">Reset</button>
@@ -185,100 +179,4 @@
     window.onload = function () {
         selectMenu("CreateUser");
     }
-
-    // get element password value:
-    const textBox_Password = document.getElementById("MatKhau");
-
-    // input password:
-    textBox_Password.addEventListener("input", function () {
-        // setup:
-        const keyValues = this.value; // get value
-        // get message
-        const message_TextDanger = document.getElementById("ValidPasswordByJS");
-        let message_warning = "";
-
-        // get lables:
-        const lableWarning = document.getElementById("passwordWaring");
-        const lableDanger = document.getElementById("passwordDanger");
-        const lableSuccess = document.getElementById("passwordSuccess");
-
-        // Reset labels:
-        resetElement(
-            lableWarning,
-            lableDanger,
-            lableSuccess,
-            message_warning,
-            message_TextDanger
-        );
-
-        // Check password issues
-        if (keyValues.toLowerCase() == 'gs755@@.local' || keyValues.toLowerCase() == 'gs755') {
-            lableDanger.style.display = "inline-block";
-            message_warning = "từ ngữ xúc phạm nhân quyền ! chim kút";
-        }
-
-
-        else if (keyValues.length < 3) {
-            lableDanger.style.display = "inline-block";
-            message_warning = "Password must be greater or equal 6 characters.";
-        } else if (keyValues == '123456') {
-            lableDanger.style.display = "inline-block";
-            message_warning = "Password is very popular. Please! choose another password. (optional) Hê hê !";
-        }
-        else if (!/[0-9]/.test(keyValues) || !/[A-Z]/.test(keyValues) || !/[a-z]/.test(keyValues) || !/[!@@'#$%^&*(),.?":{}|<>]/.test(keyValues)) {
-
-            lableDanger.style.display = "inline-block";
-            lableDanger.classList.remove("bg-danger");
-            lableDanger.classList.add("bg-warning");
-
-            lableWarning.style.display = "inline-block";
-            message_warning = "password is not a strong password! a strong password is a password with: 1 capital letter. 2. lowercase letters. 3. special characters.\n4. has numerals.";
-        }
-        else {
-            strongPassword(
-                lableSuccess,
-                message_warning,
-                message_TextDanger
-            );
-            message_warning = "password is very 💪 haha.";
-        }
-
-        message_TextDanger.textContent = message_warning;
-    });
-
-    textBox_Password.addEventListener("blur", function () {
-        const keyValues = this.value;
-
-        // Nếu không có ký tự nào, ẩn tất cả các nhãn
-        if (keyValues.length === 0) {
-            document.getElementById("ValidPasswordByJS").textContent = "";
-            document.getElementById("passwordWaring").style.display = "none";
-            document.getElementById("passwordDanger").style.display = "none";
-            document.getElementById("passwordSuccess").style.display = "none";
-        }
-    });
-
-    function resetElement(lableWarning, lableDanger, lableSuccess, message_warning, message_TextDanger) {
-
-        lableWarning.style.display = "none";
-        lableDanger.style.display = "none";
-        lableSuccess.style.display = "none";
-
-        message_warning = "";
-        message_TextDanger.classList.remove("text-success");
-        message_TextDanger.classList.add("text-danger");
-
-        lableDanger.classList.remove("bg-warning");
-        lableDanger.classList.add("bg-danger");
-    }
-
-    function strongPassword(lableSuccess, message_warning, message_TextDanger) {
-
-        lableSuccess.style.display = "block";
-        message_TextDanger.classList.remove("text-danger");
-        message_TextDanger.classList.add("text-success");
-        message_TextDanger.textContent = message_warning;
-
-    }
-
 </script>

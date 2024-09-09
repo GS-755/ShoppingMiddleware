@@ -1,90 +1,170 @@
 ﻿@model ShoppingMiddleware.Models.NguoiDung
 
 @{
-    ViewBag.Title = "Details";
+
+    // Array of random characters
+    char[] randomCharaters = new char[] {
+        '∀','∂','∃','∅','∇','∈','∉','∋','∏','∑'
+    };
+
+    // Password length
+    int pass = Model.MatKhau.Length;
+
+    // Initialize the masked password string
+    string hinepass = "";
+
+    // Random number generator
+    Random random = new Random();
+
+    // Generate a random character sequence
+    for (int i = 0; i < pass; i++)
+    {
+        hinepass += randomCharaters[random.Next(randomCharaters.Length)];
+    }
+
 }
 
-<h2>Details</h2>
+<div class="content-wrapper">
 
-<div>
-    <h4>NguoiDung</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenND)
-        </dt>
+    <!-- Content -->
 
-        <dd>
-            @Html.DisplayFor(model => model.TenND)
-        </dd>
+    <div class="container-xxl flex-grow-1 container-p-y">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ho_TenDem)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ho_TenDem)
-        </dd>
+        <div class="row">
+            <!-- User Sidebar -->
+            <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
+                <!-- User Card -->
+                <div class="card mb-6">
+                    <div class="card-body pt-12">
+                        <div class="user-avatar-section">
+                            <div class=" d-flex align-items-center flex-column">
+                                <img class="img-fluid rounded mb-4" src="~/assets/img/avatars/1.png" height="120" width="120" alt="User avatar">
+                                <div class="user-info text-center">
+                                    <h5>
+                                        @Html.DisplayFor(model => model.Ho_TenDem)
+                                        @Html.DisplayFor(model => model.TenND)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                                    </h5>
+                                    @if (Model.PhanQuyen.TenQuyen == "SuperAdmin")
+                                    {
+                                        <span class="badge bg-label-danger rounded-pill">
+                                            @Model.PhanQuyen.TenQuyen
+                                        </span>
+                                    }
+                                    else if (Model.PhanQuyen.TenQuyen == "Admin")
+                                    {
+                                        <span class="badge bg-label-primary rounded-pill">
+                                            @Model.PhanQuyen.TenQuyen
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-label-success rounded-pill">
+                                            @Model.PhanQuyen.TenQuyen
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-around flex-wrap my-6 gap-0 gap-md-3 gap-lg-4">
+                            <div class="d-flex align-items-center me-5 gap-4">
+                                <div class="avatar">
+                                    <div class="avatar-initial bg-label-primary rounded">
+                                        <i class="ri-check-line ri-24px"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">
+                                        @Html.Action("Totaluserbill", new { userID = Model.IDND })
+                                     </h5>
+                                    <span>Order</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-4">
+                                <div class="avatar">
+                                    <div class="avatar-initial bg-label-primary rounded">
+                                        <i class="ri-briefcase-line ri-24px"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">
+                                        @Html.Action("Totaluserlike", new { userID = Model.IDND })
+                                    </h5>
+                                    <span>Favorite Product</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="pb-4 border-bottom mb-4">Details</h5>
+                        <div class="info-container">
+                            <ul class="list-unstyled mb-6">
+                                <li class="mb-2">
+                                    <span class="h6">Username:</span>
+                                    <span>
+                                        @Model.TenDangNhap
+                                    </span>
+                                </li>
+                                <li class="mb-2">
+                                    <span class="h6">Password: </span>
+                                    <span>
+                                        @hinepass
+                                    </span>
+                                </li>
+                                <li class="mb-2">
+                                    <span class="h6">Email:</span>
+                                    <span>
+                                        <a href="mailto:@(Model.Email)">@Html.DisplayFor(model => model.Email)</a>
+                                    </span>
+                                </li>
+                                <li class="mb-2">
+                                    <span class="h6">Status:</span>
+                                    <span class="badge bg-label-success rounded-pill">Active</span>
+                                </li>
+                                <li class="mb-2">
+                                    <span class="h6">Role:</span>
+                                    <span>
+                                        @Model.PhanQuyen.TenQuyen
+                                    </span>
+                                </li>
+                                <li class="mb-2">
+                                    <span class="h6">Contact:</span>
+                                    <span>@Model.SDT</span>
+                                </li>
+                                <li class="mb-2">
+                                    <span class="h6">Age</span>
+                                    <span>@Model.Tuoi</span>
+                                </li>
+                            </ul>
+                            <div class="d-flex justify-content-center">
+                                @Html.ActionLink("Edit", "Edit", "NguoiDungs", new { id = Model.IDND }, new { @class = "btn btn-primary me-4 waves-effect waves-light" })
+                                <a href="javascript:;" class="btn btn-outline-danger suspend-user waves-effect">Suspend</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /User Card -->
+            </div>
+            <!--/ User Sidebar -->
+            <!-- User Content -->
+            <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
+                <!-- User Tabs -->
+                <div class="nav-align-top">
+                    <ul class="nav nav-pills flex-column flex-md-row flex-wrap mb-6 row-gap-2">
+                        <li class="nav-item"><a class="nav-link active waves-effect waves-light" href="javascript:void(0);"><i class="ri-group-line me-1_5"></i>Account</a></li>
+                        <li class="nav-item"><a class="nav-link waves-effect waves-light" href="app-user-view-billing.html"><i class="ri-bookmark-line me-1_5"></i>Billing &amp; Plans</a></li>
+                        <li class="nav-item"><a class="nav-link waves-effect waves-light" href="app-user-view-notifications.html"><i class="ri-notification-4-line me-1_5"></i>Notifications</a></li>
+                        <li class="nav-item"><a class="nav-link waves-effect waves-light" href="app-user-view-connections.html"><i class="ri-link-m me-1_5"></i>Connections</a></li>
+                    </ul>
+                </div>
+                <!-- User Tabs -->
+                <!-- /Invoice table -->
+                @Html.Action("PartialView_TableUserOrderBill", new { userID = Model.IDND })
+                <!-- /Invoice table -->
+            </div>
+            <!--/ User Content -->
+        </div>
+    </div>
+    <!-- / Content -->
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GioiTinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GioiTinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SDT)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SDT)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tuoi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tuoi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MatKhau)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MatKhau)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TenDangNhap)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TenDangNhap)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhanQuyen.TenQuyen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhanQuyen.TenQuyen)
-        </dd>
-
-    </dl>
+    <div class="content-backdrop fade"></div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDND }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

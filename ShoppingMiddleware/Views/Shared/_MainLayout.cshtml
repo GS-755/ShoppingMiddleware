@@ -47,6 +47,17 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="~/assets/js/config.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../assets/vendor/js/helpers.js"></script>
+    <style type="text/css">
+        .layout-menu-fixed .layout-navbar-full .layout-menu,
+        .layout-page {
+            padding-top: 0px !important;
+        }
+
+        .content-wrapper {
+            padding-bottom: 0px !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -130,327 +141,6 @@
 
                         </ul>
                     </li>
-
-
-                    <!-- Layouts -->
-                    @*<li class="menu-item">
-                            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                <i class="menu-icon tf-icons ri-layout-2-line"></i>
-                                <div data-i18n="Layouts">Layouts</div>
-                            </a>
-
-                            <ul class="menu-sub">
-                                <li class="menu-item">
-                                    <a href="layouts-without-menu.html" class="menu-link">
-                                        <div data-i18n="Without menu">Without menu</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="layouts-without-navbar.html" class="menu-link">
-                                        <div data-i18n="Without navbar">Without navbar</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="layouts-container.html" class="menu-link">
-                                        <div data-i18n="Container">Container</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="layouts-fluid.html" class="menu-link">
-                                        <div data-i18n="Fluid">Fluid</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="layouts-blank.html" class="menu-link">
-                                        <div data-i18n="Blank">Blank</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>*@
-
-                    <!-- Front Pages -->
-                    @*<li class="menu-item">
-                            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                <i class="menu-icon tf-icons ri-file-copy-line"></i>
-                                <div data-i18n="Front Pages">Front Pages</div>
-                                <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
-                            </a>
-                            <ul class="menu-sub">
-                                <li class="menu-item">
-                                    <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/front-pages/landing-page.html"
-                                       class="menu-link"
-                                       target="_blank">
-                                        <div data-i18n="Landing">Landing</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/front-pages/pricing-page.html"
-                                       class="menu-link"
-                                       target="_blank">
-                                        <div data-i18n="Pricing">Pricing</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/front-pages/payment-page.html"
-                                       class="menu-link"
-                                       target="_blank">
-                                        <div data-i18n="Payment">Payment</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/front-pages/checkout-page.html"
-                                       class="menu-link"
-                                       target="_blank">
-                                        <div data-i18n="Checkout">Checkout</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/front-pages/help-center-landing.html"
-                                       class="menu-link"
-                                       target="_blank">
-                                        <div data-i18n="Help Center">Help Center</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>*@
-
-                    @*<li class="menu-header mt-7">
-                            <span class="menu-header-text">Apps &amp; Pages</span>
-                        </li>*@
-                    <!-- Apps -->
-                    @*<li class="menu-item">
-                            <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-email.html"
-                               target="_blank"
-                               class="menu-link">
-                                <i class="menu-icon tf-icons ri-mail-open-line"></i>
-                                <div data-i18n="Email">Email</div>
-                                <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-chat.html"
-                               target="_blank"
-                               class="menu-link">
-                                <i class="menu-icon tf-icons ri-wechat-line"></i>
-                                <div data-i18n="Chat">Chat</div>
-                                <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-calendar.html"
-                               target="_blank"
-                               class="menu-link">
-                                <i class="menu-icon tf-icons ri-calendar-line"></i>
-                                <div data-i18n="Calendar">Calendar</div>
-                                <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-kanban.html"
-                               target="_blank"
-                               class="menu-link">
-                                <i class="menu-icon tf-icons ri-drag-drop-line"></i>
-                                <div data-i18n="Kanban">Kanban</div>
-                                <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
-                            </a>
-                        </li>*@
-                    <!-- Pages -->
-                    <!--<li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons ri-layout-left-line"></i>
-                            <div data-i18n="Account Settings">Account Settings</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="pages-account-settings-account.html" class="menu-link">
-                                    <div data-i18n="Account">Account</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="pages-account-settings-notifications.html" class="menu-link">
-                                    <div data-i18n="Notifications">Notifications</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="pages-account-settings-connections.html" class="menu-link">
-                                    <div data-i18n="Connections">Connections</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons ri-shield-keyhole-line"></i>
-                            <div data-i18n="Authentications">Authentications</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="auth-login-basic.html" class="menu-link" target="_blank">
-                                    <div data-i18n="Basic">Login</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="auth-register-basic.html" class="menu-link" target="_blank">
-                                    <div data-i18n="Basic">Register</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
-                                    <div data-i18n="Basic">Forgot Password</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons ri-box-3-line"></i>
-                            <div data-i18n="Misc">Misc</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="pages-misc-error.html" target="_blank" class="menu-link">
-                                    <div data-i18n="Error">Error</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="pages-misc-under-maintenance.html" target="_blank" class="menu-link">
-                                    <div data-i18n="Under Maintenance">Under Maintenance</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>-->
-                    <!-- Components -->
-                    <!--<li class="menu-header mt-7"><span class="menu-header-text">Components</span></li>-->
-                    <!-- Cards -->
-                    <!--<li class="menu-item">
-                        <a href="cards-basic.html" class="menu-link">
-                            <i class="menu-icon tf-icons ri-bank-card-2-line"></i>
-                            <div data-i18n="Basic">Cards</div>
-                        </a>
-                    </li>-->
-                    <!-- User interface -->
-                    <!--<li class="menu-item">
-                        <a href="javascript:void(0)" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons ri-toggle-line"></i>
-                            <div data-i18n="User interface">User interface</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="ui-accordion.html" class="menu-link">
-                                    <div data-i18n="Accordion">Accordion</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-alerts.html" class="menu-link">
-                                    <div data-i18n="Alerts">Alerts</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-badges.html" class="menu-link">
-                                    <div data-i18n="Badges">Badges</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-buttons.html" class="menu-link">
-                                    <div data-i18n="Buttons">Buttons</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-carousel.html" class="menu-link">
-                                    <div data-i18n="Carousel">Carousel</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-collapse.html" class="menu-link">
-                                    <div data-i18n="Collapse">Collapse</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-dropdowns.html" class="menu-link">
-                                    <div data-i18n="Dropdowns">Dropdowns</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-footer.html" class="menu-link">
-                                    <div data-i18n="Footer">Footer</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-list-groups.html" class="menu-link">
-                                    <div data-i18n="List Groups">List Groups</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-modals.html" class="menu-link">
-                                    <div data-i18n="Modals">Modals</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-navbar.html" class="menu-link">
-                                    <div data-i18n="Navbar">Navbar</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-offcanvas.html" class="menu-link">
-                                    <div data-i18n="Offcanvas">Offcanvas</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-pagination-breadcrumbs.html" class="menu-link">
-                                    <div data-i18n="Pagination & Breadcrumbs">Pagination &amp; Breadcrumbs</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-progress.html" class="menu-link">
-                                    <div data-i18n="Progress">Progress</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-spinners.html" class="menu-link">
-                                    <div data-i18n="Spinners">Spinners</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-tabs-pills.html" class="menu-link">
-                                    <div data-i18n="Tabs & Pills">Tabs &amp; Pills</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-toasts.html" class="menu-link">
-                                    <div data-i18n="Toasts">Toasts</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-tooltips-popovers.html" class="menu-link">
-                                    <div data-i18n="Tooltips & Popovers">Tooltips &amp; Popovers</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="ui-typography.html" class="menu-link">
-                                    <div data-i18n="Typography">Typography</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>-->
-                    <!-- Extended components -->
-                    @*<li class="menu-item">
-                            <a href="javascript:void(0)" class="menu-link menu-toggle">
-                                <i class="menu-icon tf-icons ri-box-3-line"></i>
-                                <div data-i18n="Extended UI">Extended UI</div>
-                            </a>
-                            <ul class="menu-sub">
-                                <li class="menu-item">
-                                    <a href="extended-ui-perfect-scrollbar.html" class="menu-link">
-                                        <div data-i18n="Perfect Scrollbar">Perfect Scrollbar</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="extended-ui-text-divider.html" class="menu-link">
-                                        <div data-i18n="Text Divider">Text Divider</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>*@
                 </ul>
             </aside>
             <!-- / Menu -->
@@ -637,6 +327,104 @@
             // lấy menu hiện tại.
             var element = document.getElementById(menuItem);
             element.classList.add('active');
+        }
+
+    </script>
+
+    <script>
+        // get element password value:
+        const textBox_Password = document.getElementById("MatKhau");
+
+        // input password:
+        textBox_Password.addEventListener("input", function () {
+            // setup:
+            const keyValues = this.value; // get value
+            // get message
+            const message_TextDanger = document.getElementById("ValidPasswordByJS");
+            let message_warning = "";
+
+            // get lables:
+            const lableWarning = document.getElementById("passwordWaring");
+            const lableDanger = document.getElementById("passwordDanger");
+            const lableSuccess = document.getElementById("passwordSuccess");
+
+            // Reset labels:
+            resetElement(
+                lableWarning,
+                lableDanger,
+                lableSuccess,
+                message_warning,
+                message_TextDanger
+            );
+
+            // Check password issues
+            if (keyValues.toLowerCase() == 'gs755@@.local' || keyValues.toLowerCase() == 'gs755') {
+                lableDanger.style.display = "inline-block";
+                message_warning = "từ ngữ xúc phạm nhân quyền ! chim kút";
+            }
+
+
+            else if (keyValues.length < 3) {
+                lableDanger.style.display = "inline-block";
+                message_warning = "Password must be greater or equal 6 characters.";
+            } else if (keyValues == '123456') {
+                lableDanger.style.display = "inline-block";
+                message_warning = "Password is very popular. Please! choose another password. (optional) Hê hê !";
+            }
+            else if (!/[0-9]/.test(keyValues) || !/[A-Z]/.test(keyValues) || !/[a-z]/.test(keyValues) || !/[!@@'#$%^&*(),.?":{}|<>]/.test(keyValues)) {
+
+                lableDanger.style.display = "inline-block";
+                lableDanger.classList.remove("bg-danger");
+                lableDanger.classList.add("bg-warning");
+
+                lableWarning.style.display = "inline-block";
+                message_warning = "password is not a strong password! a strong password is a password with: 1 capital letter. 2. lowercase letters. 3. special characters.\n4. has numerals.";
+            }
+            else {
+                strongPassword(
+                    lableSuccess,
+                    message_warning,
+                    message_TextDanger
+                );
+                message_warning = "password is very 💪 haha.";
+            }
+
+            message_TextDanger.textContent = message_warning;
+        });
+
+        textBox_Password.addEventListener("blur", function () {
+            const keyValues = this.value;
+
+            // Nếu không có ký tự nào, ẩn tất cả các nhãn
+            if (keyValues.length === 0) {
+                document.getElementById("ValidPasswordByJS").textContent = "";
+                document.getElementById("passwordWaring").style.display = "none";
+                document.getElementById("passwordDanger").style.display = "none";
+                document.getElementById("passwordSuccess").style.display = "none";
+            }
+        });
+
+        function resetElement(lableWarning, lableDanger, lableSuccess, message_warning, message_TextDanger) {
+
+            lableWarning.style.display = "none";
+            lableDanger.style.display = "none";
+            lableSuccess.style.display = "none";
+
+            message_warning = "";
+            message_TextDanger.classList.remove("text-success");
+            message_TextDanger.classList.add("text-danger");
+
+            lableDanger.classList.remove("bg-warning");
+            lableDanger.classList.add("bg-danger");
+        }
+
+        function strongPassword(lableSuccess, message_warning, message_TextDanger) {
+
+            lableSuccess.style.display = "block";
+            message_TextDanger.classList.remove("text-danger");
+            message_TextDanger.classList.add("text-success");
+            message_TextDanger.textContent = message_warning;
+
         }
 
     </script>

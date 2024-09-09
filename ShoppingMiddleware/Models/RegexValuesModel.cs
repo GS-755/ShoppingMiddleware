@@ -69,6 +69,7 @@ namespace ShoppingMiddleware.Models
             if (string.IsNullOrWhiteSpace(phoneNumber))
             {
                 messages.Add("Please input the phone number.");
+                return false;
             }
             // Phone number must be exactly 10 digits.
             if (phoneNumber.Length != 10 || !phoneNumber.All(char.IsDigit))
