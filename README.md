@@ -147,13 +147,15 @@ Add: Model DonDatHang, FlutterServiceDTO - class: TrangThaiDonHang, Departmentwa
 
 ---
 
-<details open="" align="left">
+<details lose="" align="left">
   <summary>  
   # Update: page user acount 
   </summary>
-    <img src="https://github.com/user-attachments/assets/1915805c-6cd4-47bf-9e86-b24cf07ac353" width="600"/>
+   
+  <img src="https://github.com/user-attachments/assets/1915805c-6cd4-47bf-9e86-b24cf07ac353" width="600"/>
 
-Load user table:
+  Load user table:
+  
   ```C#
         [HttpGet]
         public ActionResult UsersTable(string roleID)
@@ -175,5 +177,261 @@ Load user table:
             return PartialView("NguoiDung", users);
         }
   ```
+
+</details>
+
+---
+
+<details open="" align="left">
+  <summary>  
+  # Update: Update Create user validations.
+  </summary>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/cc4263a3-d1dc-447d-95e9-deca0a9fb4d5" width="200"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a2ab211c-38a7-4836-b6a5-b5e6969a7c29" width="600"/>
+</p>
+
+Update: Model RegexValues  
+```C#
+
+    public class RegexValues
+    {
+        /* *************************** Documents ***************************
+         * 
+         * Todo: 
+         *       + Cln All message Regex before check regex.
+         *       + Set isValid is flase when create new Method validate.
+         *       + Add new message when Regex `flase`.
+         * 
+         * *************************** Documents *************************** */
+
+
+        // Setup:
+        public List<string> messages = new List<string>();
+        private bool isValid;
+        
+        public bool IsStrongPassword(string password)
+        {
+            // setup:
+            messages.Clear();
+            isValid = false;
+
+            /* Check if the password is empty */
+            if (string.IsNullOrEmpty(password))
+            {
+                messages.Add("Password is empty.");
+                return false;
+            }
+
+            /* Check password length */
+            if (password.Length < 6 || password.Length > 10)
+                messages.Add("Password must be longer than 6 and shorter than 10 characters.");
+            /* Check for spaces */
+            if (password.Contains(" "))
+                messages.Add("Password should not contain spaces.");
+            // Check if the password contains at least one uppercase letter
+            if (!password.Any(char.IsUpper))
+                messages.Add("Password must have at least one uppercase letter.");
+            // Check if the password contains at least one lowercase letter
+            if (!password.Any(char.IsLower))
+                messages.Add("Password must have at least one lowercase letter.");
+            // Check if the password contains at least one digit
+            if (!password.Any(char.IsDigit))
+                messages.Add("Password must have at least one digit.");
+            // Check if the password contains at least one special character
+            if (!password.Any(c => !char.IsLetterOrDigit(c)))
+                messages.Add("Password must have at least one special character.");
+            
+            if( messages.Count <= 0)
+                isValid = true;
+
+            return isValid;
+        }
+
+        public bool PhoneNumberValid(string phoneNumber)
+        {
+            // setup:
+            messages.Clear();
+            isValid = false;
+
+            // Check if phone number is empty.
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+            {
+                messages.Add("Please input the phone number.");
+                return false;
+            }
+            // Phone number must be exactly 10 digits.
+            if (phoneNumber.Length != 10 || !phoneNumber.All(char.IsDigit))
+            {
+                messages.Add("Phone number must be exactly 10 digits and contain only numbers.");
+            }
+            // Check if phone number contains at least one character (this check is redundant if above is valid).
+            if (!phoneNumber.Any(char.IsDigit))
+            {
+                messages.Add("Phone number must contain at least one numeric character.");
+            }
+
+            // If there are no messages, the phone number is valid.
+            if (messages.Count == 0)
+            {
+                isValid = true;
+            }
+
+            return isValid;
+        }
+
+    
+        public bool UserNameIsValid(string userName)
+        {
+            // setup:
+            messages.Clear();
+            isValid = false;
+
+            /* User name not empty */
+            if (userName.IsEmpty())
+            {
+                messages.Add("User name is empty.");
+                return false;
+            }
+
+            /* User name length validations */
+            if (userName.Length <= 2 || userName.Length >= 10) 
+                messages.Add("User name short than 3 and long than 10 charaters.");
+            /* Check for spaces */
+            if (userName.Contains(" "))
+                messages.Add("User name should not contain spaces.");
+            // User name is valid:
+            if(messages.Count <= 0)
+            isValid = true;
+
+            return isValid;
+        }
+    
+    }
+```
+Update: NguoiDungsController - Action Create
+
+```C#
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create([Bind(Include = "IDND,TenND,Ho_TenDem,Email,GioiTinh,SDT,Tuoi,MatKhau,TenDangNhap,IDQuyen")] NguoiDung nguoiDung)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                        Code ...
+
+                    // if Account is not exist => check Regex values:
+                    else
+                    {
+                        /* ************************ Documents ************************
+                            
+                        RegexValues:
+                            => messages: List[string] show message invalid values.
+                            => functions: 
+                                 + UserNameIsValid(string)  => bool
+                                 + IsStrongPassword(string) => bool
+                                 + PhoneNumberValid(string) => bool
+
+                           ************************ Documents ************************ */
+
+                        // setup:
+                        RegexValues regexValues = new RegexValues();
+                        string listRegex;
+
+                        // check regex user name:
+                        if (!regexValues.UserNameIsValid(nguoiDung.TenDangNhap))
+                        {
+                            /*
+                             * todo: list default = "";
+                             */
+                            listRegex = "";
+
+                            // show list regex:
+                            foreach (string mess in regexValues.messages)
+                            {
+                                // Add regex message to list:
+                                listRegex +=
+                                $"<br />" +
+                                $". {mess}";
+                            }
+
+                            ModelState.AddModelError(
+                            // Field Model:
+                            "TenDangNhap",
+                            // messages:
+                            $"User name {nguoiDung.TenDangNhap} " +
+                            $"violates our policy: " +
+                            // list regex:
+                            listRegex
+                           );
+                        }
+                        // Check password regex:
+                        else if (!regexValues.IsStrongPassword(nguoiDung.MatKhau))
+                        {
+                            /*
+                             * todo: list default = "";
+                             */
+                            listRegex = "";
+
+                            // show list regex:
+                            foreach (string mess in regexValues.messages)
+                            {
+                                // Add regex message to list:
+                                listRegex +=
+                                $"<br />" +
+                                $". {mess}";
+                            }
+
+                            ModelState.AddModelError(
+                            // Field Model:
+                            "MatKhau",
+                            // messages:
+                            $"password " +
+                            $"violates our policy: " +
+                            // list regex:
+                            listRegex
+                           );
+
+
+                        }
+                        // Check password regex:
+                        else if (!regexValues.PhoneNumberValid(nguoiDung.SDT))
+                        {
+                            /*
+                             * todo: list default = "";
+                             */
+                            listRegex = "";
+
+                            // show list regex:
+                            foreach (string mess in regexValues.messages)
+                            {
+                                // Add regex message to list:
+                                listRegex +=
+                                $"<br />" +
+                                $". {mess}";
+                            }
+
+                            ModelState.AddModelError(
+                            // Field Model:
+                            "SDT",
+                            // messages:
+                            $"Phone number " +
+                            $"violates our policy: " +
+                            // list regex:
+                            listRegex
+                           );
+                        }  else
+                      code ...
+                    }
+                Code ...
+        }
+
+```
 </details>
 
