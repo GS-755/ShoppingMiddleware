@@ -372,12 +372,15 @@
     </Content>
     <Content Include="Public\imgs\aosomi.jpg" />
     <Content Include="Public\imgs\aothun.jpg" />
+    <Content Include="Public\imgs\AzurLane.gif" />
     <Content Include="Public\imgs\B1.png" />
     <Content Include="Public\imgs\B2.jpg" />
     <Content Include="Public\imgs\B3.png" />
     <Content Include="Public\imgs\B4.png" />
     <Content Include="Public\imgs\B5.png" />
     <Content Include="Public\imgs\B6.png" />
+    <Content Include="Public\imgs\background1.jpg" />
+    <Content Include="Public\imgs\giaythethao1.jpg" />
     <Content Include="Public\imgs\G1.png" />
     <Content Include="Public\imgs\G2.png" />
     <Content Include="Public\imgs\G3.png" />
@@ -438,6 +441,10 @@
     <Content Include="Views\Home\ProductList.cshtml" />
     <Content Include="Views\NguoiDungs\PartialView_Totals.cshtml" />
     <Content Include="Views\NguoiDungs\PartialView_TableUserOrderBill.cshtml" />
+    <Content Include="Views\NguoiDungs\PartialView_FavoriteProducts.cshtml" />
+    <Content Include="Views\NguoiDungs\View_ImgProductZoom.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
+    <Content Include="Views\NguoiDungs\PartialView_Emty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

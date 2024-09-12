@@ -1,10 +1,5 @@
-﻿@using ShoppingMiddleware.Models
-@model IEnumerable<ShoppingMiddleware.Models.SanPham>
-
-@{
-    ViewBag.Title = "ProductList";
-    Layout = "~/Views/Shared/_MainLayout.cshtml";
-}
+﻿@model IEnumerable<ShoppingMiddleware.Models.SanPham>
+@using ShoppingMiddleware.Models
 
 <!-- / Navbar -->
 <!-- Content wrapper -->
@@ -14,7 +9,7 @@
     <div class="container-xxl flex-grow-2 container-p-y">
         <!-- Examples -->
 
-        <div class="row row-cols-1 row-cols-md-5 g-6 mb-6">
+        <div class="row row-cols-1 row-cols-md-3 g-6 mb-6">
             @foreach (var item in Model)
             {
                 HinhAnh[] imgs = item.HinhAnh.ToArray();
@@ -26,14 +21,14 @@
                         <p class="card-text"> </p>
                         <img onclick="showResult('@productUrl')" class="card-img-top" src="~/Public/imgs/@(imgs[0].TenHinh)" alt="Card image cap">
                         <div class="card-body">
-                            <p class="card-text"> click images <i style="align-content:end;" class="ri-heart-line"></i></p>
+                            <p class="card-text"> click images </p>
                             <h5 class="card-title">@Html.DisplayFor(modelItem => item.TenSP)</h5>
                             <h6 class="card-subtitle">
                                 Category: @Html.DisplayFor(modelItem => item.LoaiSP.TenLoai)
                             </h6>
                             <p class="card-text"> </p>
                             <a href="javascript:void(0)" class="btn btn-outline-primary waves-effect">Buy now !</a>
-                            <a href="@Url.Action("Details", "SanPhams", new {id = item.IDSP})" class="btn btn-outline-primary waves-effect">Detail</a>
+                            <a href="javascript:void(0)" class="btn btn-outline-primary waves-effect">Detail</a>
                             <p class="card-text"> </p>
                             <p class="card-text">Cost: @detail.GiaBan.ToString("N0")/VNĐ </p>
                         </div>

@@ -9,6 +9,7 @@
       data-template="vertical-menu-template-free"
       data-style="light">
 <head>
+
     <meta charset="utf-8" />
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
@@ -83,6 +84,7 @@
 
                 <div class="menu-inner-shadow"></div>
 
+                <!-- Flutter API-->
                 <ul class="menu-inner py-1">
                     <li class="menu-item active open">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -100,21 +102,24 @@
                             </li>
                         </ul>
                     </li>
+               <!-- Flutter API / -->
 
-                    <!-- Dashboards -->
+               <!-- Dashboards -->
+               <!-- User Action -->
                     <li class="menu-item active open">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons ri-home-smile-line"></i>
+                            <i class="menu-icon tf-icons ri-shield-user-line"></i>
                             <div data-i18n="Dashboards">Accounts</div>
                             <div class="badge bg-success rounded-pill ms-auto">oke</div>
                         </a>
-
+                        @* user list *@
                         <ul class="menu-sub">
                             <li name="UserList" id="UserList" class="menu-item ">
                                 <a href="@Url.Action("Index", "NguoiDungs")" class="menu-link">
                                     <div data-i18n="Users Account">Users Account</div>
                                 </a>
                             </li>
+                        @* create user *@
                             <li name="CreateUser" id="CreateUser" class="menu-item ">
                                 <a href="@Url.Action("Create","NguoiDungs")" class="menu-link">
                                     <div data-i18n="Create Account">Create Account</div>
@@ -122,11 +127,11 @@
                             </li>
                         </ul>
                     </li>
-
-
+                    <!-- User Action / -->
+                    <!-- Product Action  -->
                     <li class="menu-item active open">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons ri-home-smile-line"></i>
+                            <i class="menu-icon tf-icons ri-product-hunt-line"></i>
                             <div data-i18n="PRODUCTS">PRODUCTS</div>
 
                             <div class="badge bg-danger rounded-pill ms-auto">Updating</div>
@@ -135,12 +140,21 @@
                         <ul class="menu-sub">
                             <li name="Product1" id="Product1" class="menu-item ">
                                 <a href="@Url.Action("Index","SanPhams")" class="menu-link">
-                                    <div data-i18n="Sản Phẩm">Sản Phẩm</div>
+                                    <div data-i18n="Product List">Product List</div>
                                 </a>
                             </li>
-
                         </ul>
+
+                        <ul class="menu-sub">
+                            <li name="Product1" id="Product1" class="menu-item ">
+                                <a href="@Url.Action("ProductList","Home")" class="menu-link">
+                                    <div data-i18n="Show Product cart">Show Product cart</div>
+                                </a>
+                            </li>
+                        </ul>
+
                     </li>
+                    <!-- Product Action / -->
                 </ul>
             </aside>
             <!-- / Menu -->

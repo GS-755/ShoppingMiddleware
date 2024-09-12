@@ -21,31 +21,6 @@ namespace ShoppingMiddleware.Controllers
             return View(await phanquyen);
         }
 
-
-        [HttpGet]
-        public async Task<ActionResult> UsersTable(string roleID)
-        {
-            // Account list:
-            if (roleID == "Defaul")
-            {
-                var userList = db.NguoiDung.ToList();
-                return PartialView("NguoiDung", userList);
-            }
-
-            // Account by id:
-            IQueryable<NguoiDung> usersQuery = db.NguoiDung;
-
-            if (!string.IsNullOrEmpty(roleID) && int.TryParse(roleID, out int parsedRoleID))
-            {
-                usersQuery = usersQuery.Where(u => u.IDQuyen == parsedRoleID);
-            }
-
-            // Pratial View table Account list:
-            var users = await usersQuery.ToListAsync();
-            return PartialView("NguoiDung", users);
-        }
-
-
         [HttpGet]
         // GET: NguoiDungs/Details/5
         public async Task<ActionResult> Details(int? id)
@@ -298,10 +273,12 @@ namespace ShoppingMiddleware.Controllers
     
         public ActionResult Totaluserbill(int? userID)
         {
-            var total = db.DonDatHang.Where(n => n.IDND == userID).Count();
+            var total = db.DonDatHang
+                .Where(n => n.IDND == userID)
+                .Count();
+
             return PartialView("PartialView_Totals", total);
         }
-
         public ActionResult Totaluserlike(int? userID)
         {
             // total user's favorite products
@@ -309,14 +286,66 @@ namespace ShoppingMiddleware.Controllers
                 .Where(n => n.IDND == userID)
                 .SelectMany(n => n.SanPham)
                 .Count();
+
             return PartialView("PartialView_Totals", favorites);
         }
-
+        public ActionResult PartialView_Emty()
+        {
+            return PartialView("PartialView_Emty");
+        }
         public ActionResult PartialView_TableUserOrderBill(int? userID)
         {
-            var UserOrders = db.DonDatHang.Where(d => d.IDND == userID).ToList();
-            return PartialView("PartialView_TableUserOrderBill", UserOrders);
+            var UserOrders = db.DonDatHang
+                .Where(d => d.IDND == userID)
+                .ToList();
+
+            string pageName = UserOrders.Count() <= 0
+                 ? "PartialView_Emty"
+                 : "PartialView_TableUserOrderBill";
+
+            return PartialView(pageName, UserOrders);
+        }
+        public ActionResult PartialView_FavoriteProducts(int? userID)
+        {
+            var favorites = db.NguoiDung
+                .Include(s => s.SanPham)
+                .Where(n => n.IDND == userID)
+                .SelectMany(i => i.SanPham)
+                .ToList();
+
+            string pageName = favorites.Count() <= 0
+                    ? "PartialView_Emty"
+                    : "PartialView_FavoriteProducts";
+
+            return PartialView(pageName, favorites);
+        }
+        public ActionResult View_ImgProductZoom(int? productID)
+        {
+            var hinhanhs = db.HinhAnh.Where(h => h.IDSP == productID).ToList();
+            return View(hinhanhs);
         }
 
+        [HttpGet]
+        public async Task<ActionResult> UsersTable(string roleID)
+        {
+            // Account list:
+            if (roleID == "Defaul")
+            {
+                var userList = db.NguoiDung.ToList();
+                return PartialView("NguoiDung", userList);
+            }
+
+            // Account by id:
+            IQueryable<NguoiDung> usersQuery = db.NguoiDung;
+
+            if (!string.IsNullOrEmpty(roleID) && int.TryParse(roleID, out int parsedRoleID))
+            {
+                usersQuery = usersQuery.Where(u => u.IDQuyen == parsedRoleID);
+            }
+
+            // Pratial View table Account list:
+            var users = await usersQuery.ToListAsync();
+            return PartialView("NguoiDung", users);
+        }
     }
 }

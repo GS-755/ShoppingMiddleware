@@ -32,7 +32,7 @@
                 </select>
             </div>
         </div>
-    
+
     </div>
     <div class="card-datatable table-responsive">
         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -137,7 +137,15 @@
                                         <span class="text-nowrap text-heading fw-medium">
                                             @Html.DisplayFor(model => item.TenSP)
                                         </span><small class="text-truncate d-none d-sm-block">
-                                            Mô tả: @Html.DisplayFor(model => item.MoTa)
+                                            Mô tả:
+                                            @if (item.MoTa.Length > 20)
+                                            {
+                                                @($"{item.MoTa.Substring(0, 20)}...")
+                                            }
+                                            else
+                                            {
+                                                @($"{item.MoTa}")
+                                            }
                                         </small>
                                     </div>
                                 </div>
@@ -190,7 +198,7 @@
                             <td class="dtr-hidden" style="">
                                 <div class="d-inline-block text-nowrap">
                                     <button class="btn btn-sm btn-icon btn-text-secondary waves-effect rounded-pill text-body dropdown-toggle hide-arrow"
-                                                     data-bs-toggle="dropdown">
+                                            data-bs-toggle="dropdown">
                                         <i class="ri-more-2-line ri-22px"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end m-0">
@@ -204,9 +212,10 @@
                 </tbody>
 
             </table>
-            @*<div style="width: 1%;"></div>
-            <div style="width: 1%;"></div>*@
+            <div style="width: 1%;"></div>
+                <div style="width: 1%;"></div>
         </div>
+        <p class="text-center p-5">:)) phần phân trang ở đây (coming soon)</p>
     </div>
 </div>
 
