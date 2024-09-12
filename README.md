@@ -439,7 +439,7 @@ Update: NguoiDungsController - Action Create
 
 <details open="" align="left">
   <summary>  
-  # Update: Update Create user validations.
+  # Add: Zoom Img Demo - Update: View Product Details.
   </summary>
 
 <p align="center">
