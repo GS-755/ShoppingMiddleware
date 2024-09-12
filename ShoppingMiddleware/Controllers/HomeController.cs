@@ -42,7 +42,6 @@
             return View(transacstions);
         }
 
-
         [HttpGet]
         // xử lý trạng thái đơn hàng =>  params (
         // nameid: item của tên Kho cục `Departmentwarehouses`, ( lưu ý: array cố định do data còn ít, muốn thêm tạo table thay thế về sau !)
@@ -74,6 +73,13 @@
                 };
             }
             return View();
+        }
+
+        // product cart 
+        public ActionResult ProductList()
+        {
+            var products = db.SanPham.ToList();
+            return View(products);
         }
 
 

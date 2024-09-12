@@ -1,67 +1,122 @@
-﻿@model ShoppingMiddleware.Models.SanPham
+﻿@using ShoppingMiddleware.Models
+@model ShoppingMiddleware.Models.SanPham
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+    HinhAnh[] imgs = Model.HinhAnh.ToArray();
+    ChiTiet_SP detail = Model.ChiTiet_SP.FirstOrDefault();
 }
 
-<h2>Details</h2>
+<style>
+    .col-md-16 {
+        background-color: transparent;
+    }
 
-<div>
-    <h4>SanPham</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenSP)
-        </dt>
+    .word-like {
+        font-size: 22px;
+        line-height: 1.5;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+</style>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenSP)
-        </dd>
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiSP.TenLoai)
-        </dt>
+                    <div style="background-color: transparent;" class="col-md-12 d-flex justify-content-center">
+                        <div class="images p-3">
+                            <div class="text-center p-4 h-75">
+                                <img class="card-img-top h-*" id="main-img" src="~/Public/imgs/@(imgs[0].TenHinh)" width="250" height="259" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thumbnail p-2 d-flex text-center">
+                        @foreach (var item in imgs)
+                        {
+                            <img class="card m-lg-2" onclick="change_image(this)" src="~/Public/imgs/@(item.TenHinh)" width="70">
+                        }
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.LoaiSP.TenLoai)
-        </dd>
+                    <div class="col-md-16 p-10">
+                        <div class="product p-16">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center"> <i class="fa fa-long-arrow-left"></i> <span class="ml-1">Back</span> </div> <i class="fa fa-shopping-cart text-muted"></i>
+                            </div>
+                            <div class="mt-4 mb-3">
+                                <span class="text-uppercase text-muted brand">@Html.DisplayFor(model => model.ThuongHieu.TenThuongHieu)</span>
+                                <h5 class="text-uppercase">@Html.DisplayFor(model => model.TenSP)</h5>
+                                <div class="price d-flex flex-row align-items-center">
+                                    <span class="act-price">Qty: @detail.SoLuong</span>
+                                    <div class="ml-2">
+                                        @*<small class="dis-price">$59</small>
+                            <span>40% OFF</span>*@
+                                    </div>
+                                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MauSac.TenMau)
-        </dt>
+                                <div class="price d-flex flex-row align-items-center">
+                                    <span class="act-price">@detail.GiaBan.ToString("N0")/VNĐ</span>
+                                    <div class="ml-2">
+                                        @*<small class="dis-price">$59</small>
+                            <span>40% OFF</span>*@
+                                    </div>
+                                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.MauSac.TenMau)
-        </dd>
+                            </div>
+                            <div class="about">
+                                <div class="word-like">
+                                    <pre>@detail.MoTa.ToString()</pre>
+                                </div>
+                            </div>
+                            <div class="sizes mt-5">
+                                <h6 class="text-uppercase">Size</h6>
+                                <label class="radio">
+                                    @*<input type="radio" name="size" value="S" checked>*@
+                                    <span>@detail.KichThuoc.Sodo - @detail.KichThuoc.DonVi</span>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NhanVien.TenNV)
-        </dt>
+                                </label>
+                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.NhanVien.TenNV)
-        </dd>
+                            <div class="sizes mt-5">
+                                <h6 class="text-uppercase">COLOR</h6>
+                                <label class=" d-flex flex-row align-items-center">
+                                    <span>@Html.DisplayFor(model => model.MauSac.TenMau) - @Html.DisplayFor(model => model.TrangThai.TenTrangThaI)</span>
+                                </label>
+                            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ThuongHieu.TenThuongHieu)
-        </dt>
+                            <div class="cart mt-4 align-items-center">
+                                <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button>
+                                <i class="fa fa-heart text-muted"></i>
+                                <i class="fa fa-share-alt text-muted"></i>
+                            </div>
+                        </div>
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ThuongHieu.TenThuongHieu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThai.TenTrangThaI)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TrangThai.TenTrangThaI)
-        </dd>
-
-    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDSP }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<script>
+    function change_image(image) {
+
+        var container = document.getElementById("main-img");
+
+        container.src = image.src;
+    }
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+    });
+</script>
