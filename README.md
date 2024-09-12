@@ -182,7 +182,7 @@ Add: Model DonDatHang, FlutterServiceDTO - class: TrangThaiDonHang, Departmentwa
 
 ---
 
-<details open="" align="left">
+<details lose="" align="left">
   <summary>  
   # Update: Update Create user validations.
   </summary>
@@ -435,3 +435,19 @@ Update: NguoiDungsController - Action Create
 ```
 </details>
 
+---
+
+<details open="" align="left">
+  <summary>  
+  # Update: Update Create user validations.
+  </summary>
+
+<p align="center">
+Update: View Product Details
+<img src="https://github.com/user-attachments/assets/80291355-dcb5-4858-8d21-6a4653e1bd8f" width="100"/>
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1a1813f3-213f-4195-9853-ab3541240608" width="600"/>
+</p>
+
+</details>
