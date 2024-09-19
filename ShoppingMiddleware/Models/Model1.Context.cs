@@ -44,5 +44,6 @@ namespace ShoppingMiddleware.Models
         public virtual DbSet<ThanhPho> ThanhPho { get; set; }
         public virtual DbSet<ThuongHieu> ThuongHieu { get; set; }
         public virtual DbSet<TrangThai> TrangThai { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

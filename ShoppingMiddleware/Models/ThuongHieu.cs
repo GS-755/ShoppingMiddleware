@@ -22,6 +22,7 @@ namespace ShoppingMiddleware.Models
     
         public int IDThuongHieu { get; set; }
         public string TenThuongHieu { get; set; }
+        public string Logo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SanPham> SanPham { get; set; }

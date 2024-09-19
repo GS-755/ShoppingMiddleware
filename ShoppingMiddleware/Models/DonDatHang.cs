@@ -36,18 +36,19 @@ namespace ShoppingMiddleware.Models
         public virtual NhanVien NhanVien { get; set; }
     }
 
+
     public class TrangThaiDonHang
     {
-        public string DaGiaoHang    = "Đã giao";
-        public string DangXuLy      = "Đang xử lý";
+        public string DaGiaoHang = "Đã giao";
+        public string DangXuLy = "Đang xử lý";
         public string DangVanChuyen = "Đang vận Chuyển";
-        public string ChoDongGoi    = "Chờ Đóng gói";
-        public string ChoLayHang    = "Chờ lấy hàng";
-        public string DangNhapCanh  = "Đang nhập cảnh";
-        public string DangXuatCang  = "Đang xuất cảnh";
-        public string DenKhoCuc     = "Đến Kho cục ";
+        public string ChoDongGoi = "Chờ Đóng gói";
+        public string ChoLayHang = "Chờ lấy hàng";
+        public string DangNhapCanh = "Đang nhập cảnh";
+        public string DangXuatCang = "Đang xuất cảnh";
+        public string DenKhoCuc = "Đến Kho cục ";
 
-        public string[] AllStatus ()
+        public string[] AllStatus()
         {
             string[] status = new string[] {
                 DaGiaoHang   ,

@@ -47,7 +47,7 @@ namespace ShoppingMiddleware.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "IDThuongHieu,TenThuongHieu")] ThuongHieu thuongHieu)
+        public async Task<ActionResult> Create([Bind(Include = "IDThuongHieu,TenThuongHieu,Logo")] ThuongHieu thuongHieu)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace ShoppingMiddleware.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "IDThuongHieu,TenThuongHieu")] ThuongHieu thuongHieu)
+        public async Task<ActionResult> Edit([Bind(Include = "IDThuongHieu,TenThuongHieu,Logo")] ThuongHieu thuongHieu)
         {
             if (ModelState.IsValid)
             {
