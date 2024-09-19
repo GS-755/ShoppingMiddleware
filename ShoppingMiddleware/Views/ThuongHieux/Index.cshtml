@@ -2,33 +2,192 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Index</h2>
+<!-- Content wrapper -->
+<div class="content-wrapper">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TenThuongHieu)
-        </th>
-        <th></th>
-    </tr>
+    <!-- Content -->
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenThuongHieu)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDThuongHieu }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDThuongHieu }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDThuongHieu })
-        </td>
-    </tr>
-}
+    <div class="container-xxl flex-grow-1 container-p-y">
 
-</table>
+
+        <div class="app-ecommerce-category">
+            <!-- Category List Table -->
+            <div class="card">
+                <div class="card-datatable table-responsive">
+                    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                        <div class="card-header d-flex rounded-0 flex-wrap py-0 pb-5 pb-md-0">
+                            <div class="me-5 ms-n2">
+                                <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                    <label>
+                                        <input type="search" class="form-control form-control-sm" placeholder="Search"
+                                               aria-controls="DataTables_Table_0">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-start justify-content-md-end align-items-baseline">
+                                <div class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center mb-0 gap-4 pt-0">
+                                    <div class="dataTables_length my-0" id="DataTables_Table_0_length">
+                                        <label>
+                                            <select name="DataTables_Table_0_length"
+                                                    aria-controls="DataTables_Table_0"
+                                                    class="form-select form-select-sm">
+                                                <option value="7">7</option>
+                                                <option value="10">10</option>
+                                                <option value="20">20</option>
+                                                <option value="50">50</option>
+                                                <option value="70">70</option>
+                                                <option value="100">100</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="dt-buttons btn-group flex-wrap">
+                                        <div class="btn-group">
+                                            <button class="btn btn-secondary buttons-collection dropdown-toggle btn-outline-secondary me-5 waves-effect waves-light"
+                                                    tabindex="0" aria-controls="DataTables_Table_0" type="button"
+                                                    aria-haspopup="dialog" aria-expanded="false">
+                                                <span>
+                                                    <i class="ri-download-line me-1"></i> <span class="d-none d-sm-inline-block">Export</span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <button class="btn btn-secondary add-new btn-primary ms-n1 waves-effect waves-light"
+                                                tabindex="0" aria-controls="DataTables_Table_0" type="button"
+                                                data-bs-toggle="offcanvas"
+                                                data-bs-target="#offcanvasEcommerceCategoryList">
+                                            <span>
+                                                <i class="ri-add-line me-0 me-sm-1"></i>
+                                                <span class="d-none d-sm-inline-block">
+                                                    Add brand
+                                                </span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="datatables-category-list table dataTable no-footer dtr-column"
+                               id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info"
+                               style="width: 1319px;">
+                            <thead>
+                                <tr>
+                                    <th class="control sorting_disabled dtr-hidden" rowspan="1" colspan="1"
+                                        style="width: 0px; display: none;" aria-label="">
+                                    </th>
+                                    <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all"
+                                        rowspan="1" colspan="1" style="width: 19px;" data-col="1" aria-label="">
+                                        <input type="checkbox" class="form-check-input">
+                                    </th>
+                                    <th class="sorting sorting_desc" tabindex="0" aria-controls="DataTables_Table_0"
+                                        rowspan="1" colspan="1" style="width: 656px;"
+                                        aria-label="Categories: activate to sort column ascending"
+                                        aria-sort="descending">
+                                        brand Name
+                                    </th>
+
+                                    <th class="sorting sorting_desc"
+                                        rowspan="1" colspan="1" >
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="odd">
+                                        <td class="  control" tabindex="0" style="display: none;">
+                                        </td>
+
+                                        <td class="  dt-checkboxes-cell">
+                                            <input type="checkbox" class="dt-checkboxes form-check-input">
+                                        </td>
+
+                                        <td class="sorting_1">
+                                            <div class="d-flex align-items-center">
+
+                                                <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary user-name">
+
+                                                    <div class="avatar">
+                                                        <img src="~/assets/img/categoryIcon/@(item.Logo) " alt="Product-8" class="rounded-2">
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="d-flex flex-column justify-content-center">
+
+                                                    <span class="text-heading fw-medium text-wrap">
+                                                        @Html.DisplayFor(modelItem => item.TenThuongHieu)
+                                                    </span>
+
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="d-flex align-items-sm-center justify-content-sm-end">
+
+                                                <button class="btn btn-sm btn-icon btn-text-secondary text-body waves-effect rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+
+                                                    <i class="ri-more-2-line ri-22px"></i>
+
+                                                </button> 
+
+                                                <div class="dropdown-menu dropdown-menu-end m-0">
+
+                                                    <a href="@Url.Action("Details", "ThuongHieux", new { id=item.IDThuongHieu })" class="dropdown-item">Detail</a>
+                                                    <a href="@Url.Action("Edit", "ThuongHieux", new { id=item.IDThuongHieu })" class="dropdown-item">Edit</a>
+                                                    <a href="@Url.Action("Delete", "ThuongHieux", new { id=item.IDThuongHieu })" class="dropdown-item">Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                } 
+                            </tbody>
+                        </table>
+
+                        <div class="row mx-1">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
+                                     aria-live="polite">Showing 1 to 7 of 14 entries</div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="dataTables_paginate paging_simple_numbers"
+                                     id="DataTables_Table_0_paginate">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="paginate_button page-item previous disabled"
+                                            id="DataTables_Table_0_previous">
+                                            <a aria-controls="DataTables_Table_0"
+                                               aria-disabled="true" role="link" data-dt-idx="previous"
+                                               tabindex="-1" class="page-link">Previous</a>
+                                        </li>
+                                        <li class="paginate_button page-item active">
+                                            <a href="#"
+                                               aria-controls="DataTables_Table_0" role="link" aria-current="page"
+                                               data-dt-idx="0" tabindex="0" class="page-link">1</a>
+                                        </li>
+                                        <li class="paginate_button page-item ">
+                                            <a href="#"
+                                               aria-controls="DataTables_Table_0" role="link" data-dt-idx="1"
+                                               tabindex="0" class="page-link">2</a>
+                                        </li>
+                                        <li class="paginate_button page-item next" id="DataTables_Table_0_next">
+                                            <a href="#" aria-controls="DataTables_Table_0" role="link"
+                                               data-dt-idx="next" tabindex="0" class="page-link">Next</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 1%;"></div>
+                    </div>
+                </div>
+            </div>
+            @* body add new *@
+        </div>
+
+    </div>
+    <!-- / Content -->
+</div>
+<!-- Content wrapper -->

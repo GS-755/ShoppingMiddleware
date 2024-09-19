@@ -45,6 +45,7 @@
         <AssociationConnector Association="BackendFlutter2024Model.FK__SanPham__IDThuon__6D0D32F4" ManuallyRouted="false" />
         <AssociationConnector Association="BackendFlutter2024Model.FK__SanPham__IDTrang__6E01572D" ManuallyRouted="false" />
         <AssociationConnector Association="BackendFlutter2024Model.yeuThich" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BackendFlutter2024Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="13.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

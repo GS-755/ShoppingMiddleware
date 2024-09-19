@@ -249,6 +249,9 @@
     <Compile Include="Models\SanPham.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ThanhPho.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -267,6 +270,7 @@
   <ItemGroup>
     <Content Include="assets\css\demo.css" />
     <Content Include="assets\css\ProductList.css" />
+    <Content Include="assets\img\categoryIcon\Adidas.png" />
     <Content Include="assets\img\avatars\1.png" />
     <Content Include="assets\img\avatars\2.png" />
     <Content Include="assets\img\avatars\3.png" />
@@ -322,6 +326,10 @@
     <Content Include="assets\img\layouts\layout-fluid-light.png" />
     <Content Include="assets\img\layouts\layout-without-menu-light.png" />
     <Content Include="assets\img\layouts\layout-without-navbar-light.png" />
+    <Content Include="assets\img\categoryIcon\nike.png" />
+    <Content Include="assets\img\categoryIcon\Puma.png" />
+    <Content Include="assets\img\categoryIcon\Reebok.png" />
+    <Content Include="assets\img\categoryIcon\UnderArmour.png" />
     <Content Include="assets\js\app-ecommerce-product-list.js" />
     <Content Include="assets\js\config.js" />
     <Content Include="assets\js\dashboards-analytics.js" />
