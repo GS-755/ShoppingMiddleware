@@ -15,6 +15,8 @@
 
         <div class="app-ecommerce-category">
             <!-- Category List Table -->
+            <div class="bg-label-danger">  @TempData["ErrorMessage"] </div>
+
             <div class="card">
                 <div class="card-datatable table-responsive">
                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -52,7 +54,9 @@
                                                     <i class="ri-download-line me-1"></i> <span class="d-none d-sm-inline-block">Export</span>
                                                 </span>
                                             </button>
+
                                         </div>
+
                                         <button class="btn btn-secondary add-new btn-primary ms-n1 waves-effect waves-light"
                                                 tabindex="0" aria-controls="DataTables_Table_0" type="button"
                                                 data-bs-toggle="offcanvas"
@@ -60,11 +64,29 @@
                                             <span>
                                                 <i class="ri-add-line me-0 me-sm-1"></i>
                                                 <span class="d-none d-sm-inline-block">
-                                                    Add brand
+                                                    Add Brand
                                                 </span>
                                             </span>
                                         </button>
+
                                     </div>
+
+                                    <button class="btn btn-secondary add-new btn-primary ms-n1 waves-effect waves-light"
+                                            tabindex="0"
+                                            aria-controls="DataTables_Table_0"
+                                            type="button"
+                                            data-bs-toggle="offcanvas"
+                                            data-bs-target="#offcanvasEcommerceCategoryList">
+                                        <span>
+                                            <i class="ri-pencil-fill me-0 me-sm-1"></i>
+                                            <span class="d-none d-sm-inline-block">
+                                                Edit Brand
+                                            </span>
+                                        </span>
+                                    </button>
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -88,7 +110,7 @@
                                     </th>
 
                                     <th class="sorting sorting_desc"
-                                        rowspan="1" colspan="1" >
+                                        rowspan="1" colspan="1">
                                     </th>
 
                                 </tr>
@@ -132,18 +154,23 @@
 
                                                     <i class="ri-more-2-line ri-22px"></i>
 
-                                                </button> 
+                                                </button>
 
                                                 <div class="dropdown-menu dropdown-menu-end m-0">
 
                                                     <a href="@Url.Action("Details", "ThuongHieux", new { id=item.IDThuongHieu })" class="dropdown-item">Detail</a>
-                                                    <a href="@Url.Action("Edit", "ThuongHieux", new { id=item.IDThuongHieu })" class="dropdown-item">Edit</a>
+
+                                                    <a data-bs-toggle="offcanvas"
+                                                       data-bs-target="#offcanvasEcommerceCategoryList_Edit"
+                                                       data-id="@item.IDThuongHieu"
+                                                       class="dropdown-item edit-category">Edit</a>
+
                                                     <a href="@Url.Action("Delete", "ThuongHieux", new { id=item.IDThuongHieu })" class="dropdown-item">Delete</a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-                                } 
+                                }
                             </tbody>
                         </table>
 
@@ -185,9 +212,48 @@
                 </div>
             </div>
             @* body add new *@
+            <!-- Offcanvas to add new customer -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasEcommerceCategoryList"
+                 aria-labelledby="offcanvasEcommerceCategoryListLabel">
+                <!-- Offcanvas Header -->
+                <div class="offcanvas-header py-6">
+                    <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Add Category</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <!-- Offcanvas Body -->
+
+                @Html.Action("Create")
+            </div>
+            <!-- Offcanvas to add new customer -->
+            @* body Edit new *@
+
+            <!-- Offcanvas to add new customer -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasEcommerceCategoryList_Edit"
+                 aria-labelledby="offcanvasEcommerceCategoryListLabel">
+                <!-- Offcanvas Header -->
+                <div class="offcanvas-header py-6">
+                    <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Add Category</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <!-- Offcanvas Body -->
+            </div>
+            <!-- Offcanvas to add new customer -->
         </div>
 
     </div>
     <!-- / Content -->
 </div>
 <!-- Content wrapper -->
+
+<script>
+    $(document).ready(function () {
+        $('.edit-category').on('click', function () {
+            var id = $(this).data('id'); // Lấy id từ data-id
+
+            // Gửi yêu cầu AJAX để nạp nội dung cho modal
+            $.get('@Url.Action("Edit", "ThuongHieux")', { id: id }, function (data) {
+                $('#offcanvasEcommerceCategoryList_Edit').html(data); // Nạp nội dung vào offcanvas
+            });
+        });
+    });
+</script>

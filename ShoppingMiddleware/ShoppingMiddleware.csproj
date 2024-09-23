@@ -279,6 +279,7 @@
     <Content Include="assets\img\avatars\6.png" />
     <Content Include="assets\img\avatars\7.png" />
     <Content Include="assets\img\backgrounds\18.jpg" />
+    <Content Include="assets\img\categoryIcon\Default.png" />
     <Content Include="assets\img\elements\1.jpg" />
     <Content Include="assets\img\elements\11.jpg" />
     <Content Include="assets\img\elements\12.jpg" />
@@ -453,6 +454,7 @@
     <Content Include="Views\NguoiDungs\View_ImgProductZoom.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\NguoiDungs\PartialView_Emty.cshtml" />
+    <Content Include="Views\ThuongHieux\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -491,7 +493,6 @@
     <Content Include="Views\ThuongHieux\Create.cshtml" />
     <Content Include="Views\ThuongHieux\Delete.cshtml" />
     <Content Include="Views\ThuongHieux\Details.cshtml" />
-    <Content Include="Views\ThuongHieux\Edit.cshtml" />
     <Content Include="Views\ThuongHieux\Index.cshtml" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />

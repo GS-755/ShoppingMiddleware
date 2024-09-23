@@ -20,6 +20,7 @@ namespace ShoppingMiddleware.Models.Flutter
         // Thông tin thương hiệu
         public int IDThuongHieu { get; set; }
         public string TenThuongHieu { get; set; }
+        public string Logo { get; set; }
 
         // Thông tin loại sản phẩm
         public int IDLoai { get; set; }
