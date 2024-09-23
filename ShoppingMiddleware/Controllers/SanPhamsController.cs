@@ -48,6 +48,8 @@ namespace ShoppingMiddleware.Controllers
                 // ThuongHieu
                 IDThuongHieu = sp.ThuongHieu.IDThuongHieu,
                 TenThuongHieu = sp.ThuongHieu.TenThuongHieu,
+                Logo = sp.ThuongHieu.Logo,
+
 
                 // NhanVien
                 TenNV = sp.NhanVien.TenNV,

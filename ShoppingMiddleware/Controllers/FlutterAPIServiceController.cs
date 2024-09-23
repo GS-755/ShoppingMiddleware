@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Web.Helpers;
 using Swashbuckle.Swagger;
 using System.Web.WebPages;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Web.Http.Results;
@@ -21,7 +22,7 @@ using System.Web.Http.Description;
 using System.Security.Cryptography;
 using static ShoppingMiddleware.Models.DTOModel.DBShopingDTOModel;
 using static ShoppingMiddleware.Models.Flutter.FlutterServiceDTOModel;
-using System.Globalization;
+
 
 namespace ShoppingMiddleware.Controllers
 {
