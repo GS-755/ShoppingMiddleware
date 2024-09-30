@@ -167,7 +167,7 @@ namespace ShoppingMiddleware.Controllers
             {
                 return HttpNotFound();
             }
-            return View(thuongHieu);
+            return PartialView("Delete",thuongHieu);
         }
 
         // POST: ThuongHieux/Delete/5
