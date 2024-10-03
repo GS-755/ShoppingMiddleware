@@ -165,7 +165,11 @@
                                                        data-id="@item.IDThuongHieu"
                                                        class="dropdown-item edit-category">Edit</a>
 
-                                                    <a href="@Url.Action("Delete", "ThuongHieux", new { id=item.IDThuongHieu })" class="dropdown-item">Delete</a>
+                                                    <a data-bs-toggle="offcanvas"
+                                                       data-bs-target="#offcanvasEcommerceCategoryList_Delete"
+                                                       data-id="@item.IDThuongHieu"
+                                                       @*href="@Url.Action("Delete", "ThuongHieux", new { id=item.IDThuongHieu })"*@
+                                                       class="dropdown-item delete-category">Delete</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -225,19 +229,34 @@
                 @Html.Action("Create")
             </div>
             <!-- Offcanvas to add new customer -->
-            @* body Edit new *@
+            @* new body Edit *@
 
             <!-- Offcanvas to add new customer -->
+
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasEcommerceCategoryList_Edit"
                  aria-labelledby="offcanvasEcommerceCategoryListLabel">
-                <!-- Offcanvas Header -->
+                 Offcanvas Header 
                 <div class="offcanvas-header py-6">
-                    <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Add Category</h5>
+                    <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Edit Category</h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <!-- Offcanvas Body -->
             </div>
             <!-- Offcanvas to add new customer -->
+
+            <!-- Offcanvas to Delete modal brand -->
+            <!-- Modal -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasEcommerceCategoryList_Delete"
+                 aria-labelledby="offcanvasEcommerceCategoryListLabel">
+                 @*Offcanvas Header*@ 
+                <div class="offcanvas-header py-6">
+                    <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Delete Category</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                 @*Offcanvas Body*@ 
+            </div>
+            <!-- Offcanvas to Delete modal brand -->
+
         </div>
 
     </div>
@@ -246,7 +265,8 @@
 <!-- Content wrapper -->
 
 <script>
-    $(document).ready(function () {
+
+        $(document).ready(function () {
         $('.edit-category').on('click', function () {
             var id = $(this).data('id'); // Lấy id từ data-id
 
@@ -256,4 +276,15 @@
             });
         });
     });
+
+    $(document).ready(function () {
+    $('.delete-category').on('click', function () {
+            var id = $(this).data('id');
+
+        $.get('@Url.Action("Delete", "ThuongHieux")', { id: id }, function (data) {
+            $('#offcanvasEcommerceCategoryList_Delete').html(data);
+        });
+    });
+})
+
 </script>

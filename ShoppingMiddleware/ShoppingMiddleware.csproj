@@ -171,6 +171,7 @@
     <Compile Include="Controllers\ChiTiet_SPAPIController.cs" />
     <Compile Include="Controllers\ChiTiet_SPController.cs" />
     <Compile Include="Controllers\CT_DonDatHangController.cs" />
+    <Compile Include="Controllers\DonDatHangs1Controller.cs" />
     <Compile Include="Controllers\DonDatHangsController.cs" />
     <Compile Include="Controllers\HinhAnhsAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -455,6 +456,11 @@
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\NguoiDungs\PartialView_Emty.cshtml" />
     <Content Include="Views\ThuongHieux\Edit.cshtml" />
+    <Content Include="Views\DonDatHangs1\Create.cshtml" />
+    <Content Include="Views\DonDatHangs1\Delete.cshtml" />
+    <Content Include="Views\DonDatHangs1\Details.cshtml" />
+    <Content Include="Views\DonDatHangs1\Edit.cshtml" />
+    <Content Include="Views\DonDatHangs1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
